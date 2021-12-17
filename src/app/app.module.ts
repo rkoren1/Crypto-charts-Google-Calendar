@@ -18,6 +18,10 @@ import { DailySalesComponent } from './dailySales/dailySales.component';
 import { DetailGridComponent } from './detail-grid/detail-grid.component';
 
 import {FormsStoreModule} from './Store/store.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,13 @@ import {FormsStoreModule} from './Store/store.module';
     DxButtonModule,
     DxDataGridModule,
     FormsStoreModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent]

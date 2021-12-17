@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import {storeReducer} from './store.reducer'
-import {storeEffects} from './store.effects'
-import { StoreFacadeService } from './store-facade.service';
+import { storeEffects } from './store.effects';
+import { storeReducer } from './store.reducer';
 
 @NgModule({
   imports: [
     StoreModule.forFeature('store', storeReducer),
     EffectsModule.forFeature([storeEffects])
   ],
-  providers: [StoreFacadeService],
+  providers: [],
 })
 export class FormsStoreModule {}
