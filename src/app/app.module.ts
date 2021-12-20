@@ -7,7 +7,7 @@ import { FooterModule, ResetPasswordFormModule, CreateAccountFormModule, ChangeP
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule, DxChartModule, DxDataGridModule } from 'devextreme-angular';
 import { SalesDashboardComponent } from './SalesDashboard/SalesDashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { SectorsComponent } from './sectors/sectors.component';
@@ -22,6 +22,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CommonModule } from '@angular/common';
+import { StandardChartComponent } from './standard-chart/standard-chart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { StoreModule } from '@ngrx/store';
       ChannelsComponent,
       GeographyComponent,
       DailySalesComponent,
-      DetailGridComponent
+      DetailGridComponent,
+      StandardChartComponent
    ],
   imports: [
     BrowserModule,
@@ -57,6 +60,8 @@ import { StoreModule } from '@ngrx/store';
       logOnly: environment.production,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    DxChartModule,
+    CommonModule
   ],
   providers: [AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent]

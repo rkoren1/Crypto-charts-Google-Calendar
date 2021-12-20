@@ -6,6 +6,8 @@ import { DxDataGridModule } from 'devextreme-angular';
 import * as AspNetData from 'devextreme-aspnet-data-nojquery';
 import { DetailGridComponent } from '../detail-grid/detail-grid.component';
 
+import { DxChartModule } from 'devextreme-angular';
+
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -27,6 +29,16 @@ export class DailySalesComponent{
   url: string;
 
   masterDetailDataSource: any;
+
+
+  grafDataSource: any;
+
+  refreshGraf(e:any)
+  {
+    this.grafDataSource = this.dataSource;
+    console.log(e.model.data);
+  }
+
 
   constructor() {
     this.url = 'https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi';
@@ -57,6 +69,7 @@ export class DailySalesComponent{
         ajaxOptions.xhrFields = { withCredentials: true };
       },
     });
+    this.grafDataSource = this.dataSource;
   }
 
 }
