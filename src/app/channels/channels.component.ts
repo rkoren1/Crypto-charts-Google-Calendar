@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JsonTableComponent } from '../graphs/jsonTable/jsonTable.component';
 
 @Component({
   selector: 'app-channels',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./channels.component.scss']
 })
 export class ChannelsComponent implements OnInit {
+  
 
   constructor() { }
 

@@ -24,6 +24,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { StandardChartComponent } from './standard-chart/standard-chart.component';
+import { JsonTableComponent } from './graphs/jsonTable/jsonTable.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { StandardChartComponent } from './standard-chart/standard-chart.componen
       GeographyComponent,
       DailySalesComponent,
       DetailGridComponent,
-      StandardChartComponent
+      StandardChartComponent,
+      JsonTableComponent,
    ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { StandardChartComponent } from './standard-chart/standard-chart.componen
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     DxChartModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent]
