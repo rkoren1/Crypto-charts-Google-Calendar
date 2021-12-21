@@ -1,12 +1,14 @@
-import { NgModule, Component, enableProdMode  } from '@angular/core';
+import { NgModule, Component, enableProdMode, ViewChild, OnInit  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxDataGridComponent, DxDataGridModule } from 'devextreme-angular';
 import * as AspNetData from 'devextreme-aspnet-data-nojquery';
 import { DetailGridComponent } from '../detail-grid/detail-grid.component';
 
 import { DxChartModule } from 'devextreme-angular';
+import dxChart from 'devextreme/viz/chart';
+import DataSource from 'devextreme/data/data_source';
 
 
 if (!/localhost/.test(document.location.host)) {
@@ -18,7 +20,10 @@ if (!/localhost/.test(document.location.host)) {
   templateUrl: './dailySales.component.html',
   styleUrls: ['./dailySales.component.scss']
 })
-export class DailySalesComponent{
+export class DailySalesComponent implements OnInit{
+
+  @ViewChild("dataGrid", {static: true}) datagrid!:DxDataGridComponent;
+  @ViewChild("barChart", {static: true}) barChart!:dxChart;
 
   customersData: any;
 
@@ -33,12 +38,19 @@ export class DailySalesComponent{
 
   grafDataSource: any;
 
+  filterValue:any;
+
   refreshGraf(e:any)
   {
-    this.grafDataSource = this.dataSource;
-    console.log(e.model.data);
-  }
+    console.log(this.datagrid.instance.getCombinedFilter());
+    //this.filterValue = this.datagrid.instance.getCombinedFilter();
+    //this.grafDataSource.load();
 
+    //this.grafDataSource = this.dat//aSource;
+    //console.log("event dela", e);
+  }
+ngOnInit(): void {
+}
 
   constructor() {
     this.url = 'https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi';

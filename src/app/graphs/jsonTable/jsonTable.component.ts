@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-jsonTable',
@@ -10,13 +8,8 @@ import { observable } from 'rxjs';
 export class JsonTableComponent implements OnInit {
   dataStore: any;
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {
-    this.http
-      .get<any>('https://jsonplaceholder.typicode.com/posts')
-      .subscribe((data) => {
-        console.log(JSON.stringify(data));
-      });
-  }
+}
 }

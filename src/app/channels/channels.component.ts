@@ -7,7 +7,8 @@ import { JsonTableComponent } from '../graphs/jsonTable/jsonTable.component';
   styleUrls: ['./channels.component.scss']
 })
 export class ChannelsComponent implements OnInit {
-  
+
+
 
   constructor() { }
 
