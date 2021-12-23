@@ -2,15 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 
-export interface ExchangeRates {
-  rates: any;
+export interface Data {
+  data: OblikaPodatkov[];
 }
 
 export interface OblikaPodatkov {
+  id: number;
+  symbol: string;
   name: string;
-  type: string;
-  unit: string;
-  value: number;
+  nameid: string;
+  rank: number;
+  price_usd: number;
+  percentage_change_24h: number;
+  percentage_change_1h: number;
+  percentage_change_7d: number;
+  price_btc: number;
+  market_cap_usd: number;
+  volume24: number;
+  volume24a: number;
+  csupply: number;
+  tsupply: number;
+  msupply: number;
 }
 
 @Component({
@@ -19,49 +31,19 @@ export interface OblikaPodatkov {
   styleUrls: ['./jsonTable.component.scss'],
 })
 export class JsonTableComponent implements OnInit {
-  dataStore!: OblikaPodatkov;
-  dataUrl = 'https://api.coingecko.com/api/v3/exchange_rates';
+  dataUrl = 'https://api.coinlore.net/api/tickers/';
 
-  dataSource: any;
-  objekt: any;
+  podatki: OblikaPodatkov[] = [];
 
-  getConfig() {
-    // now returns an Observable of Config
-    return this.http.get<ExchangeRates>(this.dataUrl);
-  }
-
-  showExchangeRates() {
-    this.http
-      .get<any>(this.dataUrl)
-      // resp is of type `HttpResponse<Config>`
-      .subscribe((resp) => {
-        // display its headers
-        this.dataSource = resp.rates;
-        //console.log(Object.keys(resp.rates));
-        //console.log(typeof Object.keys(resp.rates));
-        //bject.keys(resp.rates).forEach(element => console.log(element));
-        //Object.keys(resp.rates).forEach(btc => console.log(resp.rates.btc));
-        console.log(resp.rates);
-        JSON.parse(JSON.stringify(resp.rates), (key, value) => {
-          console.log(value.name); // log the current property name, the last is "".
-          return value; // return the unchanged property value.
-        });
-        this.objekt = JSON.parse(resp.rates);
-        console.log(this.objekt);
-        
-      });
-  }
-
-  constructor(private http: HttpClient) {
-    // ===== or inside the DataSource =====
-    this.dataSource = new DataSource({
-      // ...
-      // a mix of CustomStore and DataSource properties
-      // ...
+  getData() {
+    this.http.get<Data>(this.dataUrl).subscribe((resp) => {
+      resp.data.forEach((element) => this.podatki.push(element));
     });
   }
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit() {
-    this.showExchangeRates();
+    this.getData();
   }
 }
