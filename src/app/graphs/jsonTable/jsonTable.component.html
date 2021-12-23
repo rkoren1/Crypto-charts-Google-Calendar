@@ -1,3 +1,8 @@
-<dx-data-grid>
-  <dxi-column dataField="podatki.name" [groupIndex]="0"></dxi-column>
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="podatki"
+  keyExpr="id"
+  [columns]="['symbol', 'name', 'price_usd', 'tsupply', 'percent_change_7d','market_cap_usd','volume24']"
+  [showBorders]="true"
+>
 </dx-data-grid>

@@ -13,9 +13,9 @@ export interface OblikaPodatkov {
   nameid: string;
   rank: number;
   price_usd: number;
-  percentage_change_24h: number;
-  percentage_change_1h: number;
-  percentage_change_7d: number;
+  percent_change_24h: number;
+  percent_change_1h: number;
+  percent_change_7d: number;
   price_btc: number;
   market_cap_usd: number;
   volume24: number;
@@ -41,7 +41,10 @@ export class JsonTableComponent implements OnInit {
     });
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+
+
+  }
 
   ngOnInit() {
     this.getData();
