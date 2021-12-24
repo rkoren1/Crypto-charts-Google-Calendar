@@ -2,7 +2,50 @@
   id="gridContainer"
   [dataSource]="podatki"
   keyExpr="id"
-  [columns]="['symbol', 'name', 'price_usd', 'tsupply', 'percent_change_7d','market_cap_usd','volume24']"
   [showBorders]="true"
 >
+  <dxo-search-panel
+    [visible]="true"
+    [highlightSearchText]="false"
+  ></dxo-search-panel>
+
+  <dxo-paging [pageSize]="15"></dxo-paging>
+
+  <dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="[10, 15, 25, 50, 100]"
+  ></dxo-pager>
+
+  <dxi-column dataField="symbol" dataType="string"></dxi-column>
+  <dxi-column dataField="name" dataType="string"></dxi-column>
+  <dxi-column
+    dataField="price_usd"
+    dataType="number"
+    caption="Price"
+    [format]="{ style: 'currency', currency: 'USD' }"
+  ></dxi-column>
+  <dxi-column
+    dataField="tsupply"
+    dataType="number"
+    caption="Total supply"
+    [format]="{ style: 'currency', currency: 'USD' }"
+  ></dxi-column>
+  <dxi-column
+    dataField="percent_change_24h"
+    caption="Change 24h"
+    dataType="number"
+    format="percent"
+  ></dxi-column>
+  <dxi-column
+    dataField="market_cap_usd"
+    caption="Market cap"
+    dataType="number"
+    [format]="{ style: 'currency', currency: 'USD' }"
+  ></dxi-column>
+  <dxi-column
+    dataField="volume24"
+    caption="Volume 24h"
+    dataType="number"
+    [format]="{ style: 'currency', currency: 'USD' }"
+  ></dxi-column>
 </dx-data-grid>
