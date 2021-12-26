@@ -4,10 +4,8 @@ import { StoreApiService } from './store-api.service';
 import { getData, getDataSuccess, getDataFailure } from './store.actions';
 import {
   catchError,
-  exhaustMap,
   map,
   mergeMap,
-  switchMap,
 } from 'rxjs/operators';
 import { of } from 'rxjs';
 

@@ -1,7 +1,6 @@
 import { store } from './store.state';
 import { Action, createReducer, on, Store } from '@ngrx/store';
 import * as storeActions from './store.actions';
-import { state } from '@angular/animations';
 
 const initialState: store = {
   data: [],
