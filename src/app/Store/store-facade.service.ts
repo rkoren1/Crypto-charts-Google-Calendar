@@ -10,6 +10,11 @@ import * as storeSelectors from './store.selectors';
 })
 export class StoreFacadeService {
 
+  getData()
+  {
+    this.store.dispatch(storeActions.getData());
+  }
+
 public selectData$ = this.store.pipe(select(storeSelectors.SelectData));
 
 constructor(private store: Store<store>) {}

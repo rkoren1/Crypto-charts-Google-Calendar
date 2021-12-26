@@ -1,17 +1,19 @@
-import { store } from "./store.state";
-import { Action, createReducer, on } from "@ngrx/store";
-import * as storeActions from './store.actions'
+import { store } from './store.state';
+import { Action, createReducer, on, Store } from '@ngrx/store';
+import * as storeActions from './store.actions';
+import { state } from '@angular/animations';
 
 const initialState: store = {
-  podatki: undefined
+  data: [],
+};
+
+export const storeFn = createReducer(
+  initialState,
+  on(storeActions.getDataSuccess, (state, action) => {
+    return action.data;
+  })
+);
+
+export function storeReducer(state = initialState, action: Action): store {
+  return storeFn(state, action);
 }
-
-export const storeFn = createReducer(initialState,on(storeActions.addDataFromGrid, (state, action) =>{
-  return {
-    ...state
-  };
-}) );
-
-export function storeReducer(state=initialState,action:Action): store{return storeFn(state,action)};
-
-

@@ -1,8 +1,32 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { StoreApiService } from './store-api.service';
+import { getData, getDataSuccess, getDataFailure } from './store.actions';
+import {
+  catchError,
+  exhaustMap,
+  map,
+  mergeMap,
+  switchMap,
+} from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
+export class storeEffects {
+  loadData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getData),
+      mergeMap(() =>
+        this.storeApiService.getData().pipe(
+          map((data) => getDataSuccess({data})),
+          catchError((error) => of(getDataFailure({ error })))
+        )
+      )
+    )
+  );
 
-export class storeEffects{
-
+  constructor(
+    private actions$: Actions,
+    private storeApiService: StoreApiService
+  ) {}
 }
-
