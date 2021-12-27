@@ -1,5 +1,6 @@
 export interface store{
   data: OblikaPodatkov[];
+  selectedData: OblikaPodatkov[];
 }
 export interface OblikaPodatkov {
   id: number;

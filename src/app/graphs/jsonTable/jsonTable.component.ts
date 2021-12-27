@@ -17,7 +17,11 @@ export class JsonTableComponent implements OnInit, OnDestroy {
 
   constructor(private storeFacadeService: StoreFacadeService) {}
 
-  drawChart() {}
+  drawChart() {
+    this.storeFacadeService.setSelectedData(
+      this.dataGrid.instance.getSelectedRowsData()
+    );
+  }
 
   ngOnInit() {
     this.storeFacadeService.getData();
