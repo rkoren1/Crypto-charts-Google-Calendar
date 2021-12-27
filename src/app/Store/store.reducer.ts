@@ -9,7 +9,9 @@ const initialState: store = {
 export const storeFn = createReducer(
   initialState,
   on(storeActions.getDataSuccess, (state, action) => {
-    return action.data;
+    let koncnState = [...state.data];
+    action.data.data.forEach((element) => koncnState.push(element));
+    return { data: koncnState };
   })
 );
 

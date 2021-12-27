@@ -1,4 +1,5 @@
 <dx-data-grid
+  #dataGridRef
   id="gridContainer"
   [dataSource]="podatki"
   keyExpr="id"
@@ -9,12 +10,18 @@
     [highlightSearchText]="false"
   ></dxo-search-panel>
 
-  <dxo-paging [pageSize]="15"></dxo-paging>
+  <dxo-paging [pageSize]="10"></dxo-paging>
 
   <dxo-pager
     [showPageSizeSelector]="true"
     [allowedPageSizes]="[10, 15, 25, 50, 100]"
   ></dxo-pager>
+
+  <dxo-selection
+    [selectAllMode]="'allPages'"
+    [showCheckBoxesMode]="'onClick'"
+    mode="multiple"
+  ></dxo-selection>
 
   <dxi-column dataField="symbol" dataType="string"></dxi-column>
   <dxi-column dataField="name" dataType="string"></dxi-column>
@@ -28,7 +35,7 @@
     dataField="tsupply"
     dataType="number"
     caption="Total supply"
-    [format]="{ style: 'currency', currency: 'USD' }"
+    format="currency"
   ></dxi-column>
   <dxi-column
     dataField="percent_change_24h"
@@ -40,12 +47,13 @@
     dataField="market_cap_usd"
     caption="Market cap"
     dataType="number"
-    [format]="{ style: 'currency', currency: 'USD' }"
+    format="currency"
   ></dxi-column>
   <dxi-column
     dataField="volume24"
     caption="Volume 24h"
     dataType="number"
-    [format]="{ style: 'currency', currency: 'USD' }"
+    format="currency"
   ></dxi-column>
 </dx-data-grid>
+<dx-button text="Draw chart" (click)="drawChart()"> </dx-button>

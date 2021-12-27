@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
 import { StoreFacadeService } from '../../Store/store-facade.service';
 import { OblikaPodatkov } from '../../Store/store.state';
@@ -11,10 +12,12 @@ import { OblikaPodatkov } from '../../Store/store.state';
 export class JsonTableComponent implements OnInit, OnDestroy {
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
-  
-  constructor(
-    private storeFacadeService: StoreFacadeService
-  ) {}
+  @ViewChild('dataGridRef', { static: false }) dataGrid!: DxDataGridComponent;
+  selectedRowsData = [];
+
+  constructor(private storeFacadeService: StoreFacadeService) {}
+
+  drawChart() {}
 
   ngOnInit() {
     this.storeFacadeService.getData();
