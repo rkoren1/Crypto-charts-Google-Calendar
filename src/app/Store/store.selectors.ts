@@ -4,3 +4,5 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 const SelectDataFeature = createFeatureSelector<store>('store');
 
 export const SelectData = createSelector(SelectDataFeature,(stanje)=> stanje.data);
+
+export const SelectedData = createSelector(SelectDataFeature,(stanje)=> stanje.selectedData);

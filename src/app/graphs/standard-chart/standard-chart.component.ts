@@ -14,8 +14,12 @@ export class StandardChartComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   ngOnInit(): void {
     this.storeFacadeService.getData();
-    this.subscription = this.storeFacadeService.selectData$.subscribe((data) =>
-      data.forEach((data1) => this.podatki.push(data1))
+    this.subscription = this.storeFacadeService.getSelectedData$.subscribe((data) =>
+    {
+      data.forEach((data1) => this.podatki.push(data1));
+      console.log(data);
+    }
+
     );
   }
 
