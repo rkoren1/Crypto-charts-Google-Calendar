@@ -9,18 +9,21 @@ import { OblikaPodatkov } from '../../Store/store.state';
   styleUrls: ['./standard-chart.component.scss'],
 })
 export class StandardChartComponent implements OnInit, OnDestroy {
+  prikaziGraf = false;
   constructor(private storeFacadeService: StoreFacadeService) {}
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   ngOnInit(): void {
     this.storeFacadeService.getData();
-    this.subscription = this.storeFacadeService.getSelectedData$.subscribe((data) =>
-    {
-      data.forEach((data1) => this.podatki.push(data1));
-      console.log(data);
-    }
-
-    );
+    this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
+      (data) => {
+        data.forEach((data1) => this.podatki.push(data1));
+      }
+    )
+    if (this.podatki.length === 0)
+      this.prikaziGraf = false;
+     else
+      this.prikaziGraf = true;
   }
 
   ngOnDestroy(): void {

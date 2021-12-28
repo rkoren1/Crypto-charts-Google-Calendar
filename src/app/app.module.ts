@@ -7,7 +7,7 @@ import { FooterModule, ResetPasswordFormModule, CreateAccountFormModule, ChangeP
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule, DxChartModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule, DxChartModule, DxDataGridModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { SalesDashboardComponent } from './SalesDashboard/SalesDashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { SectorsComponent } from './sectors/sectors.component';
@@ -65,7 +65,8 @@ import { HttpClientModule } from '@angular/common/http';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     DxChartModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [AuthService, ScreenService, AppInfoService],
   bootstrap: [AppComponent]
