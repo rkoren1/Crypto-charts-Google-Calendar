@@ -2,8 +2,8 @@
   #dataGridRef
   id="gridContainer"
   [dataSource]="podatki"
-  keyExpr="id"
   [showBorders]="true"
+  (onCellClick)="isItChecked()"
 >
   <dxo-search-panel
     [visible]="true"
@@ -56,5 +56,5 @@
     format="currency"
   ></dxi-column>
 </dx-data-grid>
-<dx-button text="Draw chart" (click)="drawChart()" >
+<dx-button text="Draw chart" (click)="drawChart()" [disabled]="disablanButton">
 </dx-button>

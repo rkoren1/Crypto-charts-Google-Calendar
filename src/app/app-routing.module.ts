@@ -11,8 +11,6 @@ import { ChannelsComponent } from './channels/channels.component';
 import { GeographyComponent } from './geography/geography.component';
 import { DailySalesComponent } from './dailySales/dailySales.component';
 
-
-
 const routes: Routes = [
   {
     path: 'salesDashboard',
