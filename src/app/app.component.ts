@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { AuthService, ScreenService, AppInfoService } from './shared/services';
+import {  ScreenService, AppInfoService } from './shared/services';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,7 @@ export class AppComponent {
   }
 
   constructor(
-    private authService: AuthService,
     private screen: ScreenService,
     public appInfo: AppInfoService
   ) {}
-
-  isAuthenticated() {
-    return this.authService.loggedIn;
-  }
 }

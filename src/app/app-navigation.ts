@@ -1,38 +1,12 @@
 export const navigation = [
   {
-    text: 'Sales Dashboard',
-    path: '/salesDashboard',
-    icon: 'money'
-  },
-  {
-    text: 'Products',
-    icon: 'cart',
-    path: '/products'
-  },
-  {
-    text: 'Sectors',
-    path: '/sectors',
-    icon: 'chart'
-  },
-  {
-    text: 'Regions',
-    path: '/regions',
-    icon: 'globe'
-  },
-  {
-    text: 'Channels',
+    text: 'Datagrid',
     path: '/channels',
-    icon: 'showpanel'
+    icon: 'showpanel',
   },
   {
-    text: 'Geography',
-    path: '/geography',
-    icon: 'airplane'
+    text: 'Charts',
+    path: '/sectors',
+    icon: 'chart',
   },
-  {
-    text: 'Daily Sales',
-    path: '/dailySales',
-    icon: 'info'
-  },
-
 ];

@@ -3,20 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
-import { FooterModule, ResetPasswordFormModule, CreateAccountFormModule, ChangePasswordFormModule, LoginFormModule } from './shared/components';
-import { AuthService, ScreenService, AppInfoService } from './shared/services';
+import { FooterModule } from './shared/components';
+import {  ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
 import { DxButtonModule, DxChartModule, DxDataGridModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
-import { SalesDashboardComponent } from './SalesDashboard/SalesDashboard.component';
-import { ProductsComponent } from './products/products.component';
 import { SectorsComponent } from './sectors/sectors.component';
-import { RegionsComponent } from './regions/regions.component';
 import { ChannelsComponent } from './channels/channels.component';
-import { GeographyComponent } from './geography/geography.component';
-import { DailySalesComponent } from './dailySales/dailySales.component';
-import { DetailGridComponent } from './detail-grid/detail-grid.component';
-
 import {FormsStoreModule} from './Store/store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -30,14 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-      SalesDashboardComponent,
-      ProductsComponent,
       SectorsComponent,
-      RegionsComponent,
       ChannelsComponent,
-      GeographyComponent,
-      DailySalesComponent,
-      DetailGridComponent,
       StandardChartComponent,
       JsonTableComponent,
    ],
@@ -47,10 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
     SideNavInnerToolbarModule,
     SingleCardModule,
     FooterModule,
-    ResetPasswordFormModule,
-    CreateAccountFormModule,
-    ChangePasswordFormModule,
-    LoginFormModule,
     UnauthenticatedContentModule,
     AppRoutingModule,
     DxButtonModule,
@@ -68,7 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
 
   ],
-  providers: [AuthService, ScreenService, AppInfoService],
+  providers: [ ScreenService, AppInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
