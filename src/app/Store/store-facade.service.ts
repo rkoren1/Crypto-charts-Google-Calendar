@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as storeActions from './store.actions'
-import { OblikaPodatkov, store } from './store.state';
+import { store } from './store.state';
 import * as storeSelectors from './store.selectors';
+import { OblikaPodatkov } from './interfaces/datagrid.model';
 
 
 @Injectable({

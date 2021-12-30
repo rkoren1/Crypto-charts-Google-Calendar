@@ -4,22 +4,16 @@ import * as storeActions from './store.actions';
 
 const initialState: store = {
   data: [],
-  selectedData: []
+  selectedData: [],
 };
 
 export const storeFn = createReducer(
   initialState,
   on(storeActions.getDataSuccess, (state, action) => {
-    let koncnState = [...state.data];
-    action.data.data.forEach((element) => koncnState.push(element));
-    return { data: koncnState,
-    selectedData: [] };
+    return { ...state, data: action.data };
   }),
   on(storeActions.setSelectedData, (state, action) => {
-    let koncnSelected = [...state.selectedData];
-    action.selectedData.forEach((element)=> koncnSelected.push(element));
-    return { data: state.data,
-    selectedData: koncnSelected };
+    return { ...state, selectedData: action.selectedData };
   })
 );
 

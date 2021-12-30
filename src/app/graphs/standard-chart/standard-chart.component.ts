@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../../Store/store-facade.service';
-import { OblikaPodatkov } from '../../Store/store.state';
 
 @Component({
   selector: 'app-standard-chart',

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import {OblikaPodatkov, store } from './store.state';
+import { OblikaPodatkov } from './interfaces/datagrid.model';
 
 export enum storeTypes {
   getData = '[store] get data with http get request',
@@ -12,7 +12,7 @@ export const getData = createAction(storeTypes.getData);
 
 export const getDataSuccess = createAction(
   storeTypes.getDataSuccess,
-  props<{ data: store }>()
+  props<{ data: OblikaPodatkov[] }>()
 );
 
 export const getDataFailure = createAction(

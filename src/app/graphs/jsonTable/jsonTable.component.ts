@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Subscription } from 'rxjs';
+import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../../Store/store-facade.service';
-import { OblikaPodatkov } from '../../Store/store.state';
+
 
 @Component({
   selector: 'app-jsonTable',
@@ -25,20 +26,16 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     this.storeFacadeService.setSelectedData(
       this.dataGrid.instance.getSelectedRowsData()
     );
-    this.router.navigateByUrl('/sectors');
-  }
-  disablanButton = true;
-  isItChecked() {
-    if (this.dataGrid.instance.getSelectedRowsData().length === 0)
-      this.disablanButton = true;
-    else this.disablanButton = false;
+
   }
   ngOnInit() {
     this.storeFacadeService.getData();
     this.subscription = this.storeFacadeService.selectData$.subscribe((data) =>
-      data.forEach((data1) => this.podatki.push(data1))
+      this.podatki = data
     );
+
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
