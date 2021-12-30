@@ -17,14 +17,12 @@ export class StandardChartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.storeFacadeService.getData();
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
-      (data) => {
-        data.forEach((data1) => this.podatki.push(data1));
+      (grafPodatki) => {
+        this.podatki = grafPodatki;
       }
-    )
-    if (this.podatki.length === 0)
-      this.prikaziGraf = false;
-     else
-      this.prikaziGraf = true;
+    );
+    if (this.podatki.length === 0) this.prikaziGraf = false;
+    else this.prikaziGraf = true;
   }
 
   ngOnDestroy(): void {

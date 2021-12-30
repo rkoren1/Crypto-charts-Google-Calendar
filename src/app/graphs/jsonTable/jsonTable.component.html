@@ -3,7 +3,9 @@
   id="gridContainer"
   [dataSource]="podatki"
   [showBorders]="true"
-  (onCellClick)="drawChart()"
+  (onSelectionChanged)="drawChart()"
+  (onContentReady)="contentReady()"
+  [(selectedRowKeys)]="selectedRows"
 >
   <dxo-group-panel [visible]="true"></dxo-group-panel>
 
