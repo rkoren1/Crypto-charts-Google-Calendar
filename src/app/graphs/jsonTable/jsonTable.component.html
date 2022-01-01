@@ -4,7 +4,7 @@
   [dataSource]="podatki"
   [showBorders]="true"
   (onSelectionChanged)="drawChart()"
-  (onContentReady)="contentReady()"
+  (onContentReady)="obkljukajVrstice()"
   [(selectedRowKeys)]="selectedRows"
 >
   <dxo-group-panel [visible]="true"></dxo-group-panel>
@@ -27,8 +27,8 @@
     mode="multiple"
   ></dxo-selection>
 
-  <dxi-column dataField="symbol" dataType="string"></dxi-column>
-  <dxi-column dataField="name" dataType="string"></dxi-column>
+  <dxi-column dataField="symbol" dataType="string" ></dxi-column>
+  <dxi-column dataField="name" dataType="string" ></dxi-column>
   <dxi-column
     dataField="price_usd"
     dataType="number"

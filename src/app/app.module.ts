@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { StandardChartComponent } from './graphs/standard-chart/standard-chart.component';
 import { JsonTableComponent } from './graphs/jsonTable/jsonTable.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StackedChartComponent } from './graphs/stackedChart/stackedChart.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
       ChannelsComponent,
       StandardChartComponent,
       JsonTableComponent,
+      StackedChartComponent
    ],
   imports: [
     BrowserModule,

@@ -14,27 +14,27 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   @ViewChild('dataGridRef', { static: false }) dataGrid!: DxDataGridComponent;
-  selectedRowsData: OblikaPodatkov[] = [];
   selectedRows: OblikaPodatkov[] = [];
 
   constructor(
     private storeFacadeService: StoreFacadeService,
     private router: Router
   ) {}
-  contentReady() {
+
+  obkljukajVrstice() {
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (selectaneVrstice) => {
         this.selectedRows = selectaneVrstice;
       }
     );
   }
+
   drawChart() {
     this.storeFacadeService.setSelectedData(
       this.dataGrid.instance.getSelectedRowsData()
     );
-    this.selectedRowsData = this.dataGrid.instance.getSelectedRowsData();
   }
-  selectedIds: OblikaPodatkov[] = [];
+
   ngOnInit() {
     this.storeFacadeService.getData();
     this.subscription = this.storeFacadeService.selectData$.subscribe(

@@ -2,7 +2,7 @@ export const navigation = [
   {
     text: 'Datagrid',
     path: '/channels',
-    icon: 'showpanel',
+    icon: 'inserttable',
   },
   {
     text: 'Charts',

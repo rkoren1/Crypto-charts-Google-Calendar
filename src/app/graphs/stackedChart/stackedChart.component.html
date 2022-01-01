@@ -1,0 +1,21 @@
+<dx-chart id="chart" title="Male Age Structure" [dataSource]="podatki">
+  <dxi-series valueField="percent_change_24h" name="0-14"></dxi-series>
+  <dxi-series valueField="percent_change_7d" name="15-64"></dxi-series>
+  <dxi-value-axis position="right">
+    <dxo-title text="millions"></dxo-title>
+  </dxi-value-axis>
+  <dxo-common-series-settings argumentField="state" type="stackedBar">
+  </dxo-common-series-settings>
+  <dxo-legend
+    verticalAlignment="bottom"
+    horizontalAlignment="center"
+    itemTextPosition="top"
+  >
+  </dxo-legend>
+  <dxo-export [enabled]="true"></dxo-export>
+  <dxo-tooltip
+    [enabled]="true"
+    location="edge"
+  >
+  </dxo-tooltip>
+</dx-chart>

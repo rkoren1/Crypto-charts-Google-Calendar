@@ -1,22 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
-import { StoreFacadeService } from '../../Store/store-facade.service';
+import { StoreFacadeService } from 'src/app/Store/store-facade.service';
 
 @Component({
-  selector: 'app-standard-chart',
-  templateUrl: './standard-chart.component.html',
-  styleUrls: ['./standard-chart.component.scss'],
+  selector: 'app-stackedChart',
+  templateUrl: './stackedChart.component.html',
+  styleUrls: ['./stackedChart.component.scss']
 })
-export class StandardChartComponent implements OnInit, OnDestroy {
+export class StackedChartComponent implements OnInit, OnDestroy {
+
   prikaziGraf = false;
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
-  constructor(private storeFacadeService: StoreFacadeService) {}
 
+  constructor(private storeFacadeService: StoreFacadeService) { }
 
-  ngOnInit(): void {
-    this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
+  ngOnInit() {
+    this.subscription = this.storeFacadeService.selectData$.subscribe(
       (grafPodatki) => {
         this.podatki = grafPodatki;
       }
@@ -28,4 +29,5 @@ export class StandardChartComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
 }
