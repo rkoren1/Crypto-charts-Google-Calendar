@@ -5,6 +5,7 @@ import * as storeActions from './store.actions';
 const initialState: store = {
   data: [],
   selectedData: [],
+  selectedGroups: [],
 };
 
 export const storeFn = createReducer(
@@ -14,6 +15,9 @@ export const storeFn = createReducer(
   }),
   on(storeActions.setSelectedData, (state, action) => {
     return { ...state, selectedData: action.selectedData };
+  }),
+  on(storeActions.setSelectedGroups, (state, action) => {
+    return { ...state, selectedGroups: action.selectedGroups };
   })
 );
 

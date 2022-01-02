@@ -6,3 +6,5 @@ const SelectDataFeature = createFeatureSelector<store>('store');
 export const SelectData = createSelector(SelectDataFeature,(stanje)=> stanje.data);
 
 export const SelectedData = createSelector(SelectDataFeature,(stanje)=> stanje.selectedData);
+
+export const SelectedGroups = createSelector(SelectDataFeature,(stanje)=> stanje.selectedGroups);

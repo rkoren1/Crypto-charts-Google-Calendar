@@ -25,3 +25,9 @@ export const setSelectedData = createAction(
   props<{ selectedData: OblikaPodatkov[] }>()
 );
 
+export const setSelectedGroups = createAction(
+  storeTypes.setSelectedData,
+  props<{ selectedGroups: any[] }>()
+);
+
+

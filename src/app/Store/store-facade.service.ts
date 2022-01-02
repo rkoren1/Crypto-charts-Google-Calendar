@@ -19,9 +19,15 @@ export class StoreFacadeService {
   {
     this.store.dispatch(storeActions.setSelectedData({selectedData}));
   }
+  setSelectedGroups(selectedGroups: any[])
+  {
+    this.store.dispatch(storeActions.setSelectedGroups({selectedGroups}));
+  }
+
 
 public selectData$ = this.store.pipe(select(storeSelectors.SelectData));
 public getSelectedData$ = this.store.pipe(select(storeSelectors.SelectedData));
+public getSelectedGroups$ = this.store.pipe(select(storeSelectors.SelectedGroups));
 
 constructor(private store: Store<store>) {}
 }

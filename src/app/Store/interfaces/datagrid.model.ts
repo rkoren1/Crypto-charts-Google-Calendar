@@ -1,4 +1,4 @@
-export interface OblikaPodatkov {
+export interface OblikaPodatkov extends Record<string, any>{
   id: number;
   symbol: string;
   name: string;
