@@ -14,7 +14,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   constructor(private storeFacadeService: StoreFacadeService) {}
-  groups: string[] = [];
+  groups: any[] = [];
   groupedData: any[] = [];
 
   getUniqueGroups(imePolja: any) {
@@ -26,13 +26,12 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     return unique;
   }
   getUniqueData(uniqGroups: string[]) {
-    let groupiraniPodatki: any[] = [];
-    var result = this.podatki.reduce(function (r, a) {
-      r[a.percent_change_24h] = r[a.percent_change_24h] || [];
-      r[a.percent_change_24h].push(a);
-      return r;
-    }, Object.create(null));
-    return result;
+    var groupBy = this.podatki.reduce((objectsByKeyValue: any, obj) => {
+      const value = obj[uniqGroups[0]];
+      objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+      return objectsByKeyValue;
+    }, {});
+    return groupBy;
   }
 
   ngOnInit() {

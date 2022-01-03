@@ -1,11 +1,12 @@
 <dx-chart id="chart" title="Percent 24h" [dataSource]="podatki">
-  <dxi-series valueField="percent_change_24h" name="Percent 24h"></dxi-series>
-  <dxi-series valueField="percent_change_7d" name="Percent 7d"></dxi-series>
-  <dxi-series valueField="percent_change_1h" name="Percent 1h"></dxi-series>
+  <dxi-series valueField="price_usd" name="price USD"></dxi-series>
   <dxi-value-axis position="right">
-    <dxo-title text="millions"></dxo-title>
+    <dxo-title text="price USD"></dxo-title>
   </dxi-value-axis>
-  <dxo-common-series-settings argumentField="symbol" type="stackedBar">
+  <dxo-common-series-settings
+    argumentField="percent_change_24h"
+    type="stackedBar"
+  >
   </dxo-common-series-settings>
   <dxo-legend
     verticalAlignment="bottom"
