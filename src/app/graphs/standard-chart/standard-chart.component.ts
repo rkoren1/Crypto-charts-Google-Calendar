@@ -21,7 +21,7 @@ export class StandardChartComponent implements OnInit, OnDestroy {
         this.podatki = grafPodatki;
       }
     );
-    if (this.podatki.length === 0) this.prikaziGraf = false;
+    if (this.podatki == null && this.podatki == undefined) this.prikaziGraf = false;
     else this.prikaziGraf = true;
   }
 

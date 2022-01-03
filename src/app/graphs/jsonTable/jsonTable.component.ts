@@ -37,7 +37,7 @@ export class JsonTableComponent implements OnInit, OnDestroy {
       }
     }
     this.storeFacadeService.setSelectedGroups(colNames);
-    console.log(this.dataGrid.instance.getDataSource().items());
+    //console.log(this.dataGrid.instance.getDataSource().items());
     //console.log(this.dataGrid.instance.getDataSource().group);
   }
 

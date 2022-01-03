@@ -15,7 +15,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
 
   constructor(private storeFacadeService: StoreFacadeService) {}
   groups: string[] = [];
-  groupedData: any[]= [];
+  groupedData: any[] = [];
 
   getUniqueGroups(imePolja: any) {
     let arrayVseh: any[] = [];
@@ -23,13 +23,16 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       arrayVseh.push(element[imePolja]);
     });
     let unique = [...new Set(arrayVseh)];
-    console.log(unique);
     return unique;
   }
-  getUniqueData(uniqGroups: any[])
-  {
+  getUniqueData(uniqGroups: string[]) {
     let groupiraniPodatki: any[] = [];
-
+    var result = this.podatki.reduce(function (r, a) {
+      r[a.percent_change_24h] = r[a.percent_change_24h] || [];
+      r[a.percent_change_24h].push(a);
+      return r;
+    }, Object.create(null));
+    return result;
   }
 
   ngOnInit() {
@@ -40,10 +43,12 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     );
     if (this.podatki.length === 0) this.prikaziGraf = false;
     else this.prikaziGraf = true;
+    this.groups = this.getUniqueGroups('percent_change_24h');
+    this.groupedData = this.getUniqueData(['percent_change_24h']);
+    console.log(this.groupedData);
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.groups= this.getUniqueGroups('percent_change_24h');
   }
 }
