@@ -27,8 +27,8 @@
     mode="multiple"
   ></dxo-selection>
 
-  <dxi-column dataField="symbol" dataType="string" ></dxi-column>
-  <dxi-column dataField="name" dataType="string" ></dxi-column>
+  <dxi-column dataField="symbol" dataType="string"></dxi-column>
+  <dxi-column dataField="name" dataType="string"></dxi-column>
   <dxi-column
     dataField="price_usd"
     dataType="number"
@@ -60,3 +60,15 @@
     format="currency"
   ></dxi-column>
 </dx-data-grid>
+
+<div class="row">
+  <div class="column">
+    Grouping:<dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+  </div>
+  <div class="column">
+    X axis:<dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+  </div>
+  <div class="column">
+    Y axis: <dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+  </div>
+</div>

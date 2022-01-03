@@ -34,6 +34,15 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     return groupBy;
   }
 
+  groupByKey(array: any[], key: string | number) {
+    return array.reduce((hash, obj) => {
+      if (obj[key] === undefined) return hash;
+      return Object.assign(hash, {
+        [obj[key]]: (hash[obj[key]] || []).concat(obj),
+      });
+    }, {});
+  }
+
   ngOnInit() {
     this.subscription = this.storeFacadeService.selectData$.subscribe(
       (grafPodatki) => {
@@ -43,7 +52,8 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     if (this.podatki.length === 0) this.prikaziGraf = false;
     else this.prikaziGraf = true;
     this.groups = this.getUniqueGroups('percent_change_24h');
-    this.groupedData = this.getUniqueData(['percent_change_24h']);
+    //this.groupedData = this.getUniqueData(['percent_change_24h']);
+    this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
     console.log(this.groupedData);
   }
 

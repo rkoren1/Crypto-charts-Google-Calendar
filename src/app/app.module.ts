@@ -7,7 +7,7 @@ import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule, DxChartModule, DxDataGridModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxChartModule, DxDataGridModule, DxSelectBoxModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { SectorsComponent } from './sectors/sectors.component';
 import { ChannelsComponent } from './channels/channels.component';
 import {FormsStoreModule} from './Store/store.module';
@@ -51,6 +51,7 @@ import { StackedChartComponent } from './graphs/stackedChart/stackedChart.compon
     DxChartModule,
     CommonModule,
     HttpClientModule,
+    DxSelectBoxModule,
 
   ],
   providers: [ ScreenService, AppInfoService],
