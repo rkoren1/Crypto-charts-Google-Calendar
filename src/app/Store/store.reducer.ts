@@ -6,6 +6,8 @@ const initialState: store = {
   data: [],
   selectedData: [],
   selectedGroups: [],
+  selectedY: '',
+  selectedX: '',
 };
 
 export const storeFn = createReducer(
@@ -18,6 +20,12 @@ export const storeFn = createReducer(
   }),
   on(storeActions.setSelectedGroups, (state, action) => {
     return { ...state, selectedGroups: action.selectedGroups };
+  }),
+  on(storeActions.setSelectedY, (state, action) => {
+    return { ...state, setSelectedY: action.selectedY };
+  }),
+  on(storeActions.setSelectedX, (state, action) => {
+    return { ...state, setSelectedX: action.selectedX };
   })
 );
 

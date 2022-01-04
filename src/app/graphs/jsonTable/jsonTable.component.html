@@ -4,7 +4,7 @@
   [dataSource]="podatki"
   [showBorders]="true"
   (onSelectionChanged)="drawChart()"
-  (onContentReady)="obkljukajVrstice($event)"
+  (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
 >
   <dxo-group-panel [visible]="true"></dxo-group-panel>
@@ -63,12 +63,25 @@
 
 <div class="row">
   <div class="column">
-    Grouping:<dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+    Grouping:<dx-select-box
+      class="selectBox"
+      [items]="tableHeaders"
+      (onItemClick)="selectanaGroupa($event)"
+    ></dx-select-box>
   </div>
   <div class="column">
-    X axis:<dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+    X axis:<dx-select-box
+      class="selectBox"
+      [items]="tableHeaders"
+      (onItemClick)="selectanX($event)"
+    ></dx-select-box>
   </div>
   <div class="column">
-    Y axis: <dx-select-box class = "selectBox" [items]="['test', 'test2']"></dx-select-box>
+    Y axis:
+    <dx-select-box
+      (onItemClick)="selectanY($event)"
+      class="selectBox"
+      [items]="tableHeaders"
+    ></dx-select-box>
   </div>
 </div>

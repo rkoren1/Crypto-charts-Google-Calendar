@@ -23,11 +23,20 @@ export class StoreFacadeService {
   {
     this.store.dispatch(storeActions.setSelectedGroups({selectedGroups}));
   }
+  setSelectedX(selectedX: string)
+  {
+    this.store.dispatch(storeActions.setSelectedX({selectedX}));
+  }
+  setSelectedY(selectedY: string)
+  {
+    this.store.dispatch(storeActions.setSelectedY({selectedY}));
+  }
 
 
 public selectData$ = this.store.pipe(select(storeSelectors.SelectData));
 public getSelectedData$ = this.store.pipe(select(storeSelectors.SelectedData));
 public getSelectedGroups$ = this.store.pipe(select(storeSelectors.SelectedGroups));
+
 
 constructor(private store: Store<store>) {}
 }

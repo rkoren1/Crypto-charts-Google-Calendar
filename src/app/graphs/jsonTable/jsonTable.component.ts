@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxSelectBoxComponent } from 'devextreme-angular';
 import dxDataGrid from 'devextreme/ui/data_grid';
+import dxSelectBox from 'devextreme/ui/select_box';
 import { Subscription } from 'rxjs';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../../Store/store-facade.service';
@@ -16,18 +17,33 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   @ViewChild('dataGridRef', { static: false }) dataGrid!: DxDataGridComponent;
   selectedRows: OblikaPodatkov[] = [];
+  tableHeaders: string[] = [];
 
   constructor(
     private storeFacadeService: StoreFacadeService,
     private router: Router
   ) {}
+  selectanaGroupa(e: any) {
+    console.log(e.itemData);
+    this.dataGrid.instance.columnOption(0, 'groupIndex', 0);
+  }
+  selectanX(e: any) {
+    this.storeFacadeService.setSelectedX(e.itemData);
+  }
+  selectanY(e: any) {
+    this.storeFacadeService.setSelectedY(e.itemData);
+  }
 
-  obkljukajVrstice(e: dxDataGrid) {
+  onContentReady(e: dxDataGrid) {
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (selectaneVrstice) => {
         this.selectedRows = selectaneVrstice;
       }
     );
+    //fills grouping selector
+    if (this.podatki.length != 0)
+      this.tableHeaders = this.getTableHeaders(this.podatki);
+
     var colCount = 0,
       colNames = [];
     for (var i = 0; i < this.dataGrid.instance.columnCount(); i++) {
@@ -39,6 +55,12 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     this.storeFacadeService.setSelectedGroups(colNames);
     //console.log(this.dataGrid.instance.getDataSource().items());
     //console.log(this.dataGrid.instance.getDataSource().group());
+  }
+
+  getTableHeaders(tabelaPodatkov: OblikaPodatkov[]) {
+    let arrayStringov: string[] = [];
+    arrayStringov = Object.keys(tabelaPodatkov[0]);
+    return arrayStringov;
   }
 
   drawChart() {
