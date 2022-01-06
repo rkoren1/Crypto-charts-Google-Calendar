@@ -79,12 +79,13 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     let objekt: any = {};
 
     data.forEach((vrednost: any) => {
-      objekt[grupiranoPolje] = vrednost.percent_change_24h;
+      objekt[grupiranoPolje] = vrednost[grupiranoPolje];
       objekt[vrednost[osX]] = vrednost[osY];
       objekt['vrednostX'] = vrednost[osX];
       finalenArray.push(objekt);
       objekt = {};
     });
+    finalenArray.push({});
     return finalenArray;
   }
 
@@ -122,6 +123,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       'symbol',
       'price_usd'
     );
+    console.log(this.finalniPodatki);
   }
 
   ngOnDestroy(): void {
