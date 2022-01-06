@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxDataGridComponent, DxSelectBoxComponent } from 'devextreme-angular';
 import dxDataGrid from 'devextreme/ui/data_grid';
-import dxSelectBox from 'devextreme/ui/select_box';
 import { Subscription } from 'rxjs';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../../Store/store-facade.service';
@@ -24,8 +23,8 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
   selectanaGroupa(e: any) {
-    console.log(e.itemData);
-    this.dataGrid.instance.columnOption(0, 'groupIndex', 0);
+    this.dataGrid.instance.clearGrouping();
+    this.dataGrid.instance.columnOption(e.itemData, 'groupIndex', 0);
   }
   selectanX(e: any) {
     this.storeFacadeService.setSelectedX(e.itemData);
@@ -42,7 +41,11 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     );
     //fills grouping selector
     if (this.podatki.length != 0)
-      this.tableHeaders = this.getTableHeaders(this.podatki);
+    {
+      this.tableHeaders.push('');
+      this.tableHeaders.push(...this.getTableHeaders(this.podatki));
+    }
+      
 
     var colCount = 0,
       colNames = [];

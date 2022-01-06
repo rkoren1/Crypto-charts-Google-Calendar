@@ -36,6 +36,8 @@ export class StoreFacadeService {
 public selectData$ = this.store.pipe(select(storeSelectors.SelectData));
 public getSelectedData$ = this.store.pipe(select(storeSelectors.SelectedData));
 public getSelectedGroups$ = this.store.pipe(select(storeSelectors.SelectedGroups));
+public getSelectedX$ = this.store.pipe(select(storeSelectors.SelectedX));
+public getSelectedY$ = this.store.pipe(select(storeSelectors.SelectedY));
 
 
 constructor(private store: Store<store>) {}

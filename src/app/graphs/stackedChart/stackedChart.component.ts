@@ -12,10 +12,15 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   prikaziGraf = false;
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
-
-  constructor(private storeFacadeService: StoreFacadeService) {}
   groups: any[] = [];
   groupedData: any[] = [];
+  xAxis:string = '';
+  yAxis:string = '';
+  xSubscription!: Subscription;
+  ySubscription!: Subscription;
+
+  constructor(private storeFacadeService: StoreFacadeService) {}
+  
 
   getUniqueGroups(imePolja: any) {
     let arrayVseh: any[] = [];
@@ -43,21 +48,33 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     }, {});
   }
 
+  
+
   ngOnInit() {
     this.subscription = this.storeFacadeService.selectData$.subscribe(
       (grafPodatki) => {
         this.podatki = grafPodatki;
       }
     );
+    this.xSubscription = this.storeFacadeService.getSelectedX$.subscribe(
+      (xOs) => {
+        this.xAxis = xOs;
+      }
+    );
+    this.ySubscription = this.storeFacadeService.getSelectedY$.subscribe(
+      (yOs) => {
+        this.yAxis = yOs;
+      }
+    );
     if (this.podatki.length === 0) this.prikaziGraf = false;
     else this.prikaziGraf = true;
-    this.groups = this.getUniqueGroups('percent_change_24h');
-    //this.groupedData = this.getUniqueData(['percent_change_24h']);
-    this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
-    console.log(this.groupedData);
+    //this.groups = this.getUniqueGroups('percent_change_24h');
+
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.xSubscription.unsubscribe();
+    this.ySubscription.unsubscribe();
   }
 }

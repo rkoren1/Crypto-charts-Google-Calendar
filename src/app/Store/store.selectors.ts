@@ -8,3 +8,7 @@ export const SelectData = createSelector(SelectDataFeature,(stanje)=> stanje.dat
 export const SelectedData = createSelector(SelectDataFeature,(stanje)=> stanje.selectedData);
 
 export const SelectedGroups = createSelector(SelectDataFeature,(stanje)=> stanje.selectedGroups);
+
+export const SelectedX = createSelector(SelectDataFeature,(stanje)=> stanje.selectedX);
+
+export const SelectedY = createSelector(SelectDataFeature,(stanje)=> stanje.selectedY);
