@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from 'src/app/Store/store-facade.service';
 
@@ -14,13 +14,13 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   groups: any[] = [];
   groupedData: any[] = [];
-  xAxis:string = '';
-  yAxis:string = '';
+  xAxis: string = '';
+  yAxis: string = '';
   xSubscription!: Subscription;
   ySubscription!: Subscription;
+  finalniPodatki!: any[];
 
   constructor(private storeFacadeService: StoreFacadeService) {}
-  
 
   getUniqueGroups(imePolja: any) {
     let arrayVseh: any[] = [];
@@ -47,8 +47,46 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       });
     }, {});
   }
+  createFinalArray(
+    data: any[],
+    uniqGroups: string[],
+    grupiranoPolje: string,
+    osX: string,
+    osY: string
+  ) {
+    let finalenArray: any[] = [];
+    let objekt: any = {};
+    uniqGroups.forEach((element: string) => {
+      objekt[grupiranoPolje] = element;
 
-  
+      data[+element].forEach((vrednost: any) => {
+        objekt[vrednost[osX]] = vrednost[osY];
+      });
+      finalenArray.push(objekt);
+      objekt = {};
+    });
+    return finalenArray;
+  }
+
+  createFinalArray1(
+    data: any[],
+    uniqGroups: string[],
+    grupiranoPolje: string,
+    osX: string,
+    osY: string
+  ) {
+    let finalenArray: any[] = [];
+    let objekt: any = {};
+
+    data.forEach((vrednost: any) => {
+      objekt[grupiranoPolje] = vrednost.percent_change_24h;
+      objekt[vrednost[osX]] = vrednost[osY];
+      objekt['vrednostX'] = vrednost[osX];
+      finalenArray.push(objekt);
+      objekt = {};
+    });
+    return finalenArray;
+  }
 
   ngOnInit() {
     this.subscription = this.storeFacadeService.selectData$.subscribe(
@@ -68,8 +106,22 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     );
     if (this.podatki.length === 0) this.prikaziGraf = false;
     else this.prikaziGraf = true;
-    //this.groups = this.getUniqueGroups('percent_change_24h');
-
+    this.groups = this.getUniqueGroups('percent_change_24h');
+    this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
+    this.finalniPodatki = this.createFinalArray(
+      this.groupedData,
+      this.groups,
+      'percent_change_24h',
+      'symbol',
+      'price_usd'
+    );
+    this.finalniPodatki = this.createFinalArray1(
+      this.podatki,
+      this.groups,
+      'percent_change_24h',
+      'symbol',
+      'price_usd'
+    );
   }
 
   ngOnDestroy(): void {
