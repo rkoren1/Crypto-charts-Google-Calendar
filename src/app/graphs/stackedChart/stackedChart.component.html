@@ -1,15 +1,11 @@
-<dx-chart id="chart" title="grupiranoPolje" [dataSource]="finalniPodatki">
-  <dxi-series valueField="AAVE" name="AAVE"></dxi-series>
-  <dxi-series valueField="BNB" name="BNB"></dxi-series>
-  <dxi-series valueField="ETH" name="ETH"></dxi-series>
-
+<dx-chart id="chart" [title]="groups" [dataSource]="finalniPodatki">
   <dxi-series
     *ngFor="let item of finalniPodatki"
     [valueField]="item.vrednostX"
     [name]="item.vrednostX"
   ></dxi-series>
   <dxi-value-axis position="right">
-    <dxo-title text="osY"></dxo-title>
+    <dxo-title [text]="yAxis"></dxo-title>
   </dxi-value-axis>
   <dxo-common-series-settings
     argumentField="percent_change_24h"

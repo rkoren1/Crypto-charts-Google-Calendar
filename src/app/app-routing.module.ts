@@ -7,20 +7,24 @@ import { ChannelsComponent } from './channels/channels.component';
 const routes: Routes = [
   {
     path: 'sectors',
-    component: SectorsComponent
+    component: SectorsComponent,
   },
   {
     path: 'channels',
-    component: ChannelsComponent
+    component: ChannelsComponent,
   },
   {
     path: '**',
-    redirectTo: 'home'
-  }
+    redirectTo: 'channels',
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true }),
+    DxDataGridModule,
+    DxFormModule,
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

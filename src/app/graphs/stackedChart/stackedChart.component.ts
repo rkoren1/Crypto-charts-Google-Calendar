@@ -12,13 +12,14 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   prikaziGraf = false;
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
-  groups: any[] = [];
+  groups: string = '';
   groupedData: any[] = [];
   xAxis: string = '';
   yAxis: string = '';
   xSubscription!: Subscription;
   ySubscription!: Subscription;
   finalniPodatki!: any[];
+  groupedFieldSubscrition!: Subscription;
 
   constructor(private storeFacadeService: StoreFacadeService) {}
 
@@ -70,7 +71,6 @@ export class StackedChartComponent implements OnInit, OnDestroy {
 
   createFinalArray1(
     data: any[],
-    uniqGroups: string[],
     grupiranoPolje: string,
     osX: string,
     osY: string
@@ -85,7 +85,13 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       finalenArray.push(objekt);
       objekt = {};
     });
-    finalenArray.push({});
+    /*
+    finalenArray.push({
+      percent_change_24h: 0.1,
+      ABC: 60000,
+      vrednostX: 'ABC',
+    });
+    */
     return finalenArray;
   }
 
@@ -105,30 +111,27 @@ export class StackedChartComponent implements OnInit, OnDestroy {
         this.yAxis = yOs;
       }
     );
+    this.groupedFieldSubscrition =
+      this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
+        this.groups = grupe[0];
+      });
     if (this.podatki.length === 0) this.prikaziGraf = false;
     else this.prikaziGraf = true;
-    this.groups = this.getUniqueGroups('percent_change_24h');
-    this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
-    this.finalniPodatki = this.createFinalArray(
-      this.groupedData,
-      this.groups,
-      'percent_change_24h',
-      'symbol',
-      'price_usd'
-    );
+    //this.groups = this.getUniqueGroups('percent_change_24h');
+    //this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
     this.finalniPodatki = this.createFinalArray1(
       this.podatki,
       this.groups,
-      'percent_change_24h',
-      'symbol',
-      'price_usd'
+      this.xAxis,
+      this.yAxis
     );
-    console.log(this.finalniPodatki);
+    //console.log(this.finalniPodatki);
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.xSubscription.unsubscribe();
     this.ySubscription.unsubscribe();
+    this.groupedFieldSubscrition.unsubscribe();
   }
 }

@@ -40,12 +40,10 @@ export class JsonTableComponent implements OnInit, OnDestroy {
       }
     );
     //fills grouping selector
-    if (this.podatki.length != 0)
-    {
+    if (this.podatki.length != 0) {
       this.tableHeaders.push('');
       this.tableHeaders.push(...this.getTableHeaders(this.podatki));
     }
-      
 
     var colCount = 0,
       colNames = [];

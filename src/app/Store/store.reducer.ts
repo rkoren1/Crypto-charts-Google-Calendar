@@ -22,10 +22,10 @@ export const storeFn = createReducer(
     return { ...state, selectedGroups: action.selectedGroups };
   }),
   on(storeActions.setSelectedY, (state, action) => {
-    return { ...state, setSelectedY: action.selectedY };
+    return { ...state, selectedY: action.selectedY };
   }),
   on(storeActions.setSelectedX, (state, action) => {
-    return { ...state, setSelectedX: action.selectedX };
+    return { ...state, selectedX: action.selectedX };
   })
 );
 

@@ -7,6 +7,12 @@
   (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
 >
+  <dxo-state-storing
+    [enabled]="true"
+    type="localStorage"
+    storageKey="storage"
+  ></dxo-state-storing>
+
   <dxo-group-panel [visible]="true" [allowColumnDragging]="false">
   </dxo-group-panel>
 
