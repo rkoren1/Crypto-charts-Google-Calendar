@@ -15,6 +15,8 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   @ViewChild('dataGridRef', { static: false }) dataGrid!: DxDataGridComponent;
+  @ViewChild('groupingSelectBoxRef', { static: false })
+  groupingBox!: DxSelectBoxComponent;
   selectedRows: OblikaPodatkov[] = [];
   tableHeaders: string[] = [];
 
@@ -54,6 +56,8 @@ export class JsonTableComponent implements OnInit, OnDestroy {
       }
     }
     this.storeFacadeService.setSelectedGroups(colNames);
+    this.groupingBox.instance.option('value', colNames[0]);
+
     //console.log(this.dataGrid.instance.getDataSource().items());
     //console.log(this.dataGrid.instance.getDataSource().group());
   }
@@ -68,6 +72,7 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     this.storeFacadeService.setSelectedData(
       this.dataGrid.instance.getSelectedRowsData()
     );
+
   }
 
   ngOnInit() {
