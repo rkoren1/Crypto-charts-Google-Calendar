@@ -7,11 +7,6 @@
   (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
 >
-  <dxo-state-storing
-    [enabled]="true"
-    type="localStorage"
-    storageKey="storage"
-  ></dxo-state-storing>
 
   <dxo-group-panel [visible]="true" [allowColumnDragging]="true">
   </dxo-group-panel>
@@ -79,7 +74,7 @@
     ></dx-select-box>
   </div>
   <div class="column">
-    X axis:<dx-select-box
+    X axis:<dx-select-box #xBoxRef
       class="selectBox"
       [items]="tableHeaders"
       (onItemClick)="selectanX($event)"
@@ -88,7 +83,7 @@
   </div>
   <div class="column">
     Y axis:
-    <dx-select-box
+    <dx-select-box #yBoxRef
       (onItemClick)="selectanY($event)"
       class="selectBox"
       [items]="tableHeaders"

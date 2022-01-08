@@ -1,4 +1,4 @@
-<dx-chart id="chart" [dataSource]="podatki" *ngIf="prikaziGraf">
+<dx-chart id="chart" [dataSource]="podatki" >
   <dxi-series
     argumentField="symbol"
     valueField="price_usd"
@@ -8,6 +8,4 @@
   ></dxi-series>
 </dx-chart>
 
-<h5 class="dx-icon-warning" *ngIf="!prikaziGraf">
-  Select data to display the chart.
-</h5>
+

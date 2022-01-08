@@ -9,7 +9,6 @@ import { StoreFacadeService } from '../../Store/store-facade.service';
   styleUrls: ['./standard-chart.component.scss'],
 })
 export class StandardChartComponent implements OnInit, OnDestroy {
-  prikaziGraf = false;
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   constructor(private storeFacadeService: StoreFacadeService) {}
@@ -21,8 +20,6 @@ export class StandardChartComponent implements OnInit, OnDestroy {
         this.podatki = grafPodatki;
       }
     );
-    if (this.podatki == null && this.podatki == undefined) this.prikaziGraf = false;
-    else this.prikaziGraf = true;
   }
 
   ngOnDestroy(): void {
