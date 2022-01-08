@@ -25,6 +25,7 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   yAxis: string = '';
   xSubscription!: Subscription;
   ySubscription!: Subscription;
+  groupedFieldSubscrition!: Subscription;
   groups: string[] = [];
 
   constructor(
@@ -46,7 +47,8 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   onContentReady(e: dxDataGrid) {
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (selectaneVrstice) => {
-        this.selectedRows = selectaneVrstice;
+        if (selectaneVrstice !== undefined)
+          this.selectedRows = selectaneVrstice;
       }
     );
     //fills grouping selector
@@ -58,6 +60,7 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     //fills x and y selectboxes
     this.xBox.instance.option('value', this.xAxis);
     this.yBox.instance.option('value', this.yAxis);
+    this.groupingBox.instance.option('value', this.groups[0]);
 
     //gets groups from datagrid
     var colNames = [];
@@ -66,12 +69,17 @@ export class JsonTableComponent implements OnInit, OnDestroy {
         colNames.push(this.dataGrid.instance.columnOption(i, 'dataField'));
       }
     }
-    this.groups = colNames;
-    //this.groups = this.dataGrid.instance.getDataSource().group()[0].selector;
-    //saves groups into store
-    this.storeFacadeService.setSelectedGroups(this.groups);
+    if (colNames.length !== 0) {
+      this.groups = colNames;
+      //saves groups into store
+      this.storeFacadeService.setSelectedGroups(this.groups);
+    }
+
     //sets grouping selectbox value
     this.groupingBox.instance.option('value', this.groups[0]);
+    this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
+
+    //this.groups = this.dataGrid.instance.getDataSource().group()[0].selector;
 
     //console.log(this.dataGrid.instance.getDataSource().items());
     //console.log(this.dataGrid.instance.getDataSource().group());
@@ -104,11 +112,17 @@ export class JsonTableComponent implements OnInit, OnDestroy {
         if (yOs !== undefined) this.yAxis = yOs;
       }
     );
+    this.groupedFieldSubscrition =
+      this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
+        if(grupe != undefined)
+        this.groups = grupe;
+      });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.ySubscription.unsubscribe();
     this.xSubscription.unsubscribe();
+    this.groupedFieldSubscrition.unsubscribe();
   }
 }

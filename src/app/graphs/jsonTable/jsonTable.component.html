@@ -74,7 +74,8 @@
     ></dx-select-box>
   </div>
   <div class="column">
-    X axis:<dx-select-box #xBoxRef
+    X axis:<dx-select-box
+      #xBoxRef
       class="selectBox"
       [items]="tableHeaders"
       (onItemClick)="selectanX($event)"
@@ -83,7 +84,8 @@
   </div>
   <div class="column">
     Y axis:
-    <dx-select-box #yBoxRef
+    <dx-select-box
+      #yBoxRef
       (onItemClick)="selectanY($event)"
       class="selectBox"
       [items]="tableHeaders"
