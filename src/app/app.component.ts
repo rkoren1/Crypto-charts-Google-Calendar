@@ -1,5 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
-import {  ScreenService, AppInfoService } from './shared/services';
+import { ScreenService, AppInfoService } from './shared/services';
+import { StoreFacadeService } from './Store/store-facade.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,9 @@ export class AppComponent {
 
   constructor(
     private screen: ScreenService,
-    public appInfo: AppInfoService
-  ) {}
+    public appInfo: AppInfoService,
+    private storeFacadeService: StoreFacadeService
+  ) {
+    this.storeFacadeService.getData();
+  }
 }

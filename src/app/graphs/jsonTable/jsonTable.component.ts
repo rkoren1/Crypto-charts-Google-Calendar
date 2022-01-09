@@ -1,5 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { DxDataGridComponent, DxSelectBoxComponent } from 'devextreme-angular';
 import dxDataGrid from 'devextreme/ui/data_grid';
 import { Subscription } from 'rxjs';
@@ -11,7 +16,7 @@ import { StoreFacadeService } from '../../Store/store-facade.service';
   templateUrl: './jsonTable.component.html',
   styleUrls: ['./jsonTable.component.scss'],
 })
-export class JsonTableComponent implements OnInit, OnDestroy {
+export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   @ViewChild('dataGridRef', { static: false }) dataGrid!: DxDataGridComponent;
@@ -28,14 +33,14 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   groupedFieldSubscrition!: Subscription;
   groups: string[] = [];
 
-  constructor(
-    private storeFacadeService: StoreFacadeService,
-    private router: Router
-  ) {}
+  ngAfterViewInit(): void {}
+
+  constructor(private storeFacadeService: StoreFacadeService) {}
   selectanaGroupa(e: any) {
+    this.groups = e.itemData;
     this.dataGrid.instance.clearGrouping();
     this.dataGrid.instance.columnOption(e.itemData, 'groupIndex', 0);
-    this.storeFacadeService.setSelectedGroups(e.itemData);
+    this.storeFacadeService.setSelectedGroups([e.itemData]);
   }
   selectanX(e: any) {
     this.storeFacadeService.setSelectedX(e.itemData);
@@ -43,7 +48,6 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   selectanY(e: any) {
     this.storeFacadeService.setSelectedY(e.itemData);
   }
-
   onContentReady(e: dxDataGrid) {
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (selectaneVrstice) => {
@@ -60,25 +64,10 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     //fills x and y selectboxes
     this.xBox.instance.option('value', this.xAxis);
     this.yBox.instance.option('value', this.yAxis);
-    this.groupingBox.instance.option('value', this.groups[0]);
-
-    //gets groups from datagrid
-    var colNames = [];
-    for (var i = 0; i < this.dataGrid.instance.columnCount(); i++) {
-      if (this.dataGrid.instance.columnOption(i, 'groupIndex') > -1) {
-        colNames.push(this.dataGrid.instance.columnOption(i, 'dataField'));
-      }
-    }
-    if (colNames.length !== 0) {
-      this.groups = colNames;
-      //saves groups into store
-      this.storeFacadeService.setSelectedGroups(this.groups);
-    }
-
     //sets grouping selectbox value
     this.groupingBox.instance.option('value', this.groups[0]);
-    this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
 
+    //this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
     //this.groups = this.dataGrid.instance.getDataSource().group()[0].selector;
 
     //console.log(this.dataGrid.instance.getDataSource().items());
@@ -98,7 +87,6 @@ export class JsonTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.storeFacadeService.getData();
     this.subscription = this.storeFacadeService.selectData$.subscribe(
       (data) => (this.podatki = data)
     );
@@ -114,8 +102,7 @@ export class JsonTableComponent implements OnInit, OnDestroy {
     );
     this.groupedFieldSubscrition =
       this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
-        if(grupe != undefined)
-        this.groups = grupe;
+        if (grupe != undefined) this.groups = grupe;
       });
   }
 

@@ -35,6 +35,7 @@ export class SectorsComponent implements OnInit {
       this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
         if (grupe !== undefined) this.groups = grupe[0];
       });
+    //prikaze stackedChart
     if (
       this.groups !== '' &&
       this.groups !== undefined &&
@@ -44,7 +45,8 @@ export class SectorsComponent implements OnInit {
       this.prikaziGrafe = false;
       this.showStandardChart = false;
       this.showStackedChart = true;
-    } else if (
+    } //prikaze standardChart
+    else if (
       this.xAxis !== '' &&
       this.yAxis !== '' &&
       (this.groups === '' || this.groups === undefined)
@@ -52,7 +54,8 @@ export class SectorsComponent implements OnInit {
       this.prikaziGrafe = false;
       this.showStackedChart = false;
       this.showStandardChart = true;
-    } else {
+    } //prikaze opozorilo
+    else {
       this.showStandardChart = false;
       this.showStackedChart = false;
       this.prikaziGrafe = true;

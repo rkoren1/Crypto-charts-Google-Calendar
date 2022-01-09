@@ -7,8 +7,7 @@
   (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
 >
-
-  <dxo-group-panel [visible]="true" [allowColumnDragging]="true">
+  <dxo-group-panel [visible]="true" [allowColumnDragging]="false">
   </dxo-group-panel>
 
   <dxo-search-panel
@@ -65,7 +64,7 @@
 
 <div class="row">
   <div class="column">
-    Grouping:<dx-select-box
+    <dx-select-box
       #groupingSelectBoxRef
       class="selectBox"
       [items]="tableHeaders"
@@ -74,22 +73,21 @@
     ></dx-select-box>
   </div>
   <div class="column">
-    X axis:<dx-select-box
+    <dx-select-box
       #xBoxRef
       class="selectBox"
       [items]="tableHeaders"
       (onItemClick)="selectanX($event)"
-      label="X axis"
+      label="X axis:"
     ></dx-select-box>
   </div>
   <div class="column">
-    Y axis:
     <dx-select-box
       #yBoxRef
       (onItemClick)="selectanY($event)"
       class="selectBox"
       [items]="tableHeaders"
-      label="Y axis"
+      label="Y axis:"
     ></dx-select-box>
   </div>
 </div>

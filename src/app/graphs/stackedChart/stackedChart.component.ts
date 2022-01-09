@@ -9,7 +9,6 @@ import { StoreFacadeService } from 'src/app/Store/store-facade.service';
   styleUrls: ['./stackedChart.component.scss'],
 })
 export class StackedChartComponent implements OnInit, OnDestroy {
-  prikaziGraf = false;
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
   groups: string = '';
@@ -18,6 +17,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   yAxis: string = '';
   xSubscription!: Subscription;
   ySubscription!: Subscription;
+  allDatasubscription!: Subscription;
   finalniPodatki!: any[];
   groupedFieldSubscrition!: Subscription;
 
@@ -96,11 +96,18 @@ export class StackedChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.storeFacadeService.selectData$.subscribe(
+    this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (grafPodatki) => {
-        this.podatki = grafPodatki;
+        if (grafPodatki !== undefined) this.podatki = grafPodatki;
       }
     );
+    if (this.podatki.length == 0) {
+      this.allDatasubscription = this.storeFacadeService.selectData$.subscribe(
+        (grafPodatki) => {
+          this.podatki = grafPodatki;
+        }
+      );
+    }
     this.xSubscription = this.storeFacadeService.getSelectedX$.subscribe(
       (xOs) => {
         this.xAxis = xOs;
@@ -115,8 +122,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
         this.groups = grupe[0];
       });
-    if (this.podatki.length === 0) this.prikaziGraf = false;
-    else this.prikaziGraf = true;
+
     //this.groups = this.getUniqueGroups('percent_change_24h');
     //this.groupedData = this.groupByKey(this.podatki, 'percent_change_24h');
     this.finalniPodatki = this.createFinalArray1(
@@ -125,7 +131,6 @@ export class StackedChartComponent implements OnInit, OnDestroy {
       this.xAxis,
       this.yAxis
     );
-    //console.log(this.finalniPodatki);
   }
 
   ngOnDestroy(): void {
@@ -133,5 +138,7 @@ export class StackedChartComponent implements OnInit, OnDestroy {
     this.xSubscription.unsubscribe();
     this.ySubscription.unsubscribe();
     this.groupedFieldSubscrition.unsubscribe();
+    if (this.allDatasubscription !== undefined)
+      this.allDatasubscription.unsubscribe();
   }
 }

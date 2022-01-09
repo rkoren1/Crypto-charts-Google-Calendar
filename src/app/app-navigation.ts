@@ -1,12 +1,12 @@
 export const navigation = [
   {
     text: 'Datagrid',
-    path: '/channels',
+    path: '/datagrid',
     icon: 'inserttable',
   },
   {
     text: 'Charts',
-    path: '/sectors',
+    path: '/charts',
     icon: 'chart',
   },
 ];

@@ -1,13 +1,10 @@
 .column {
   float: left;
-  width: 33.33%;
+  display: flex;
+  width: 33%;
   margin-top: 25px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+  justify-content: center;
+  align-items: center;
 }
 
 .selectBox {

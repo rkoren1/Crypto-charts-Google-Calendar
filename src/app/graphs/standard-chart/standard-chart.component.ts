@@ -11,18 +11,46 @@ import { StoreFacadeService } from '../../Store/store-facade.service';
 export class StandardChartComponent implements OnInit, OnDestroy {
   podatki: OblikaPodatkov[] = [];
   subscription!: Subscription;
+  xSubscription!: Subscription;
+  ySubscription!: Subscription;
+  allDatasubscription!: Subscription;
+  xAxis: string = '';
+  yAxis: string = '';
+  chartName: string = '';
   constructor(private storeFacadeService: StoreFacadeService) {}
-
 
   ngOnInit(): void {
     this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
       (grafPodatki) => {
-        this.podatki = grafPodatki;
+        if (grafPodatki !== undefined) this.podatki = grafPodatki;
       }
     );
+    if (this.podatki.length === 0) {
+      this.allDatasubscription = this.storeFacadeService.selectData$.subscribe(
+        (grafPodatki) => {
+          this.podatki = grafPodatki;
+        }
+      );
+    }
+
+    this.xSubscription = this.storeFacadeService.getSelectedX$.subscribe(
+      (xOs) => {
+        this.xAxis = xOs;
+      }
+    );
+    this.ySubscription = this.storeFacadeService.getSelectedY$.subscribe(
+      (yOs) => {
+        this.yAxis = yOs;
+      }
+    );
+    this.chartName = this.xAxis + ' / ' + this.yAxis;
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.xSubscription.unsubscribe();
+    this.ySubscription.unsubscribe();
+    if(this.allDatasubscription!= undefined)
+    this.allDatasubscription.unsubscribe();
   }
 }

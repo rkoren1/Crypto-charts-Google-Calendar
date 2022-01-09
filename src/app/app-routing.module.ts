@@ -6,16 +6,16 @@ import { ChannelsComponent } from './channels/channels.component';
 
 const routes: Routes = [
   {
-    path: 'sectors',
+    path: 'charts',
     component: SectorsComponent,
   },
   {
-    path: 'channels',
+    path: 'datagrid',
     component: ChannelsComponent,
   },
   {
     path: '**',
-    redirectTo: 'channels',
+    redirectTo: 'datagrid',
   },
 ];
 
