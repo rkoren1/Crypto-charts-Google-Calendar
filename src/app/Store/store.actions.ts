@@ -8,6 +8,7 @@ export enum storeTypes {
   setSelectedData = '[store] setSelectedData',
   setSelectedX = '[store] setSelectedX',
   setSelectedY = '[store] setSelectedY',
+  setSelectedGroups= '[store] setSelected groups',
 }
 
 export const getData = createAction(storeTypes.getData);
@@ -28,7 +29,7 @@ export const setSelectedData = createAction(
 );
 
 export const setSelectedGroups = createAction(
-  storeTypes.setSelectedData,
+  storeTypes.setSelectedGroups,
   props<{ selectedGroups: any[] }>()
 );
 

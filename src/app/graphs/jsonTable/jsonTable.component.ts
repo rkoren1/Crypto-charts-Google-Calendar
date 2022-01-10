@@ -33,7 +33,9 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
   groupedFieldSubscrition!: Subscription;
   groups: string[] = [];
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    //timeout 200s prever ce viewchild je defined
+  }
 
   constructor(private storeFacadeService: StoreFacadeService) {}
   selectanaGroupa(e: any) {
@@ -55,6 +57,7 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
           this.selectedRows = selectaneVrstice;
       }
     );
+
     //fills grouping selector
     if (this.podatki.length != 0) {
       this.tableHeaders.push('');
@@ -84,6 +87,7 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.storeFacadeService.setSelectedData(
       this.dataGrid.instance.getSelectedRowsData()
     );
+    console.log(this.selectedRows);
   }
 
   ngOnInit() {
