@@ -8,6 +8,7 @@ import {
 import { DxDataGridComponent, DxSelectBoxComponent } from 'devextreme-angular';
 import dxDataGrid from 'devextreme/ui/data_grid';
 import { Subscription } from 'rxjs';
+import { timeout } from 'rxjs/operators';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../../Store/store-facade.service';
 
@@ -32,9 +33,14 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
   ySubscription!: Subscription;
   groupedFieldSubscrition!: Subscription;
   groups: string[] = [];
+  selectedSubscription!: Subscription;
 
   ngAfterViewInit(): void {
-    //timeout 200s prever ce viewchild je defined
+    //timeout 200s prever ce je viewchild defined
+    while (this.dataGrid === undefined) {
+      timeout(200);
+    }
+    this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
   }
 
   constructor(private storeFacadeService: StoreFacadeService) {}
@@ -51,12 +57,11 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.storeFacadeService.setSelectedY(e.itemData);
   }
   onContentReady(e: dxDataGrid) {
-    this.subscription = this.storeFacadeService.getSelectedData$.subscribe(
-      (selectaneVrstice) => {
+    this.selectedSubscription =
+      this.storeFacadeService.getSelectedData$.subscribe((selectaneVrstice) => {
         if (selectaneVrstice !== undefined)
           this.selectedRows = selectaneVrstice;
-      }
-    );
+      });
 
     //fills grouping selector
     if (this.podatki.length != 0) {
@@ -87,7 +92,6 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.storeFacadeService.setSelectedData(
       this.dataGrid.instance.getSelectedRowsData()
     );
-    console.log(this.selectedRows);
   }
 
   ngOnInit() {
@@ -115,5 +119,6 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.ySubscription.unsubscribe();
     this.xSubscription.unsubscribe();
     this.groupedFieldSubscrition.unsubscribe();
+    this.selectedSubscription.unsubscribe();
   }
 }
