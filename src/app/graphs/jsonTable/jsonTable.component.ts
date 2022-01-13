@@ -45,10 +45,10 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private storeFacadeService: StoreFacadeService) {}
   selectanaGroupa(e: any) {
-    this.groups = e.itemData;
+    this.groups = e.value;
     this.dataGrid.instance.clearGrouping();
-    this.dataGrid.instance.columnOption(e.itemData, 'groupIndex', 0);
-    this.storeFacadeService.setSelectedGroups([e.itemData]);
+    this.dataGrid.instance.columnOption(e.value, 'groupIndex', 0);
+    this.storeFacadeService.setSelectedGroups([e.value]);
   }
   selectanX(e: any) {
     this.storeFacadeService.setSelectedX(e.itemData);
@@ -72,9 +72,15 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     //fills x and y selectboxes
     this.xBox.instance.option('value', this.xAxis);
     this.yBox.instance.option('value', this.yAxis);
-    //sets grouping selectbox value
-    this.groupingBox.instance.option('value', this.groups[0]);
 
+    var colNames=[];
+ for (var i=0;i<this.dataGrid.instance.columnCount();i++){
+   if(this.dataGrid.instance.columnOption(i,"groupIndex") > -1){
+      colNames.push(this.dataGrid.instance.columnOption(i,"dataField"));
+   }
+ }
+  this.groups = colNames;
+  this.groupingBox.instance.option('value', this.groups[0]);
     //this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
     //this.groups = this.dataGrid.instance.getDataSource().group()[0].selector;
 

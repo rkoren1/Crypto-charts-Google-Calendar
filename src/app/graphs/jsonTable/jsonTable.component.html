@@ -7,7 +7,7 @@
   (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
 >
-  <dxo-group-panel [visible]="true" [allowColumnDragging]="false">
+  <dxo-group-panel [visible]="true" [allowColumnDragging]="true">
   </dxo-group-panel>
 
   <dxo-search-panel
@@ -68,7 +68,7 @@
       #groupingSelectBoxRef
       class="selectBox"
       [items]="tableHeaders"
-      (onItemClick)="selectanaGroupa($event)"
+      (onValueChanged)="selectanaGroupa($event)"
       label="Group by:"
     ></dx-select-box>
   </div>
