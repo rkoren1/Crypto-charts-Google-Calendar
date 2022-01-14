@@ -34,6 +34,10 @@ export class CalendarComponent implements OnInit {
       }),
     });
   }
+  onAppointmentAdded(e)
+  {
+    
+  }
 
   ngOnInit(): void {}
 }

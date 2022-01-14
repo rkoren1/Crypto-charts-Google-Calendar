@@ -3,9 +3,10 @@
   class="long-title"
   id="scheduler"
   currentView="month"
-  [views]="['day', 'week', 'month']"
+  [views]="['week', 'month', 'agenda']"
   startDateExpr="start.dateTime"
   endDateExpr="end.dateTime"
   textExpr="summary"
+  (onAppointmentAdded)="onAppointmentAdded($event)">
 >
 </dx-scheduler>
