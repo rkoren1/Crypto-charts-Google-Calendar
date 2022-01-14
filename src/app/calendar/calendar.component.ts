@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import DataSource from 'devextreme/data/data_source';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
   selector: 'app-calendar',
@@ -7,6 +9,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
+  dataSource: any;
+
   private getData(options: any, requestOptions: any) {
     const PUBLIC_KEY = 'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM';
     const CALENDAR_ID = 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com';
@@ -23,7 +27,13 @@ export class CalendarComponent implements OnInit {
       .then((data: any) => data.items);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.dataSource = new DataSource({
+      store: new CustomStore({
+        load: (options) => this.getData(options, { showDeleted: false }),
+      }),
+    });
+  }
 
   ngOnInit(): void {}
 }

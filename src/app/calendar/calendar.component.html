@@ -1,7 +1,11 @@
 <dx-scheduler
+  [dataSource]="dataSource"
   class="long-title"
   id="scheduler"
   currentView="month"
   [views]="['day', 'week', 'month']"
+  startDateExpr="start.dateTime"
+  endDateExpr="end.dateTime"
+  textExpr="summary"
 >
 </dx-scheduler>
