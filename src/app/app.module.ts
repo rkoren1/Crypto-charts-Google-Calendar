@@ -7,7 +7,7 @@ import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSelectBoxModule} from 'devextreme-angular';
+import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
 import { SectorsComponent } from './sectors/sectors.component';
 import { ChannelsComponent } from './channels/channels.component';
 import {FormsStoreModule} from './Store/store.module';
@@ -20,6 +20,7 @@ import { StandardChartComponent } from './graphs/standard-chart/standard-chart.c
 import { JsonTableComponent } from './graphs/jsonTable/jsonTable.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StackedChartComponent } from './graphs/stackedChart/stackedChart.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StackedChartComponent } from './graphs/stackedChart/stackedChart.compon
       ChannelsComponent,
       StandardChartComponent,
       JsonTableComponent,
-      StackedChartComponent
+      StackedChartComponent,
+      CalendarComponent
    ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import { StackedChartComponent } from './graphs/stackedChart/stackedChart.compon
     HttpClientModule,
     DxSelectBoxModule,
     DxPieChartModule,
+    DxSchedulerModule,
 
   ],
   providers: [ ScreenService, AppInfoService],

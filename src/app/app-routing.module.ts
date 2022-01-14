@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 import { SectorsComponent } from './sectors/sectors.component';
 import { ChannelsComponent } from './channels/channels.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'datagrid',
     component: ChannelsComponent,
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
   },
   {
     path: '**',
