@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import { GoogleSigninService } from '../google-signin.service';
 
 @Component({
   selector: 'app-calendar',
@@ -9,7 +10,14 @@ import CustomStore from 'devextreme/data/custom_store';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-  dataSource: any;
+  dataSource: DataSource;
+  user!: gapi.auth2.GoogleUser;
+  dataUrl = [
+    'https://www.googleapis.com/calendar/v3/calendars/',
+    'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+    '/events?key=',
+    'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM',
+  ].join('');
 
   private getData(options: any, requestOptions: any) {
     const PUBLIC_KEY = 'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM';
@@ -20,24 +28,49 @@ export class CalendarComponent implements OnInit {
       '/events?key=',
       PUBLIC_KEY,
     ].join('');
-
     return this.http
       .get(dataUrl, requestOptions)
       .toPromise()
-      .then((data: any) => data.items);
+      .then((data: any) => {
+        return data.items;
+      });
   }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private signInService: GoogleSigninService,
+    private ref: ChangeDetectorRef
+  ) {
     this.dataSource = new DataSource({
       store: new CustomStore({
         load: (options) => this.getData(options, { showDeleted: false }),
+        insert: (values) => {
+          console.log(values);
+          return this.http
+            .post(this.dataUrl, JSON.stringify(values))
+            .toPromise()
+            .catch(() => {
+              throw 'Insertion failed';
+            });
+        },
       }),
     });
   }
-  onAppointmentAdded(e)
-  {
-    
+  onAppointmentAdded(e: any) {
+    console.log(e.appointmentData);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.signInService.observable().subscribe((user) => {
+      this.user = user;
+      this.ref.detectChanges();
+    });
+  }
+
+  signIn() {
+    this.signInService.signIn();
+  }
+  signOut() {
+    this.signInService.signOut();
+  }
 }

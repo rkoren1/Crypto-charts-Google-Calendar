@@ -30,7 +30,7 @@ import { CalendarComponent } from './calendar/calendar.component';
       StandardChartComponent,
       JsonTableComponent,
       StackedChartComponent,
-      CalendarComponent
+      CalendarComponent,
    ],
   imports: [
     BrowserModule,
