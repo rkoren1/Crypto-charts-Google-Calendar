@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
@@ -68,9 +73,12 @@ export class CalendarComponent implements OnInit {
   }
 
   signIn() {
-    this.signInService.signIn();
+    if (this.user == null) this.signInService.signIn();
   }
   signOut() {
     this.signInService.signOut();
+  }
+  test() {
+    console.log('dela');
   }
 }

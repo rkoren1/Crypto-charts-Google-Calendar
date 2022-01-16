@@ -1,7 +1,3 @@
-<button (click)="signIn()" *ngIf="user == null">SignIn</button>
-<div *ngIf = "user != null">
-<div>You are signed in with Google! {{user.getBasicProfile().getName()}}</div>
-</div>
 <dx-scheduler
   [dataSource]="dataSource"
   class="long-title"
@@ -15,5 +11,6 @@
   endDateExpr="end.dateTime"
   textExpr="summary"
   (onAppointmentAdded)="onAppointmentAdded($event)"
+  (onAppointmentFormOpening)="signIn()"
 >
 </dx-scheduler>
