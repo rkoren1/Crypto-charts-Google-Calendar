@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["gapi", "gapi.auth2"],
+    "types": ["gapi", "gapi.auth2", "gapi.client.calendar"],
     "paths": {
       "jszip": ["node_modules/jszip/dist/jszip.min.js"]
     }

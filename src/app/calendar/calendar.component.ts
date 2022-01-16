@@ -51,34 +51,109 @@ export class CalendarComponent implements OnInit {
         load: (options) => this.getData(options, { showDeleted: false }),
         insert: (values) => {
           console.log(values);
-          return this.http
-            .post(this.dataUrl, JSON.stringify(values))
-            .toPromise()
-            .catch(() => {
-              throw 'Insertion failed';
-            });
+          return gapi.client.calendar.events
+            .insert({
+              calendarId:
+                'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+              resource: values,
+            })
+            .then(
+              function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log('Response', response);
+              },
+              function (err) {
+                console.error('Execute error', err);
+              }
+            );
         },
       }),
     });
   }
   onAppointmentAdded(e: any) {
-    console.log(e.appointmentData);
+    //console.log(e.appointmentData);
   }
 
   ngOnInit(): void {
+    /*
     this.signInService.observable().subscribe((user) => {
       this.user = user;
       this.ref.detectChanges();
+    });
+    */
+
+    gapi.load('client:auth2', function () {
+      gapi.auth2.init({
+        client_id:
+          '379646810701-pd2bq1jpqrcjtq8gvqker5htaugaa8ub.apps.googleusercontent.com',
+      });
     });
   }
 
   signIn() {
     if (this.user == null) this.signInService.signIn();
+    console.log(this.signInService.displayToken());
   }
   signOut() {
     this.signInService.signOut();
   }
   test() {
     console.log('dela');
+  }
+  authenticate() {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({
+        scope:
+          'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
+      })
+      .then(
+        function () {
+          console.log('Sign-in successful');
+        },
+        function (err) {
+          console.error('Error signing in', err);
+        }
+      );
+  }
+  loadClient() {
+    gapi.client.setApiKey('AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM');
+    return gapi.client
+      .load(
+        'https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest',
+        'auth2'
+      )
+      .then(
+        function () {
+          console.log('GAPI client loaded for API');
+        },
+        function (err) {
+          console.error('Error loading GAPI client for API', err);
+        }
+      );
+  }
+  execute() {
+    return gapi.client.calendar.events
+      .insert({
+        calendarId: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+        resource: {
+          end: {
+            date: '2022-01-24',
+          },
+          start: {
+            date: '2022-01-24',
+          },
+          summary: 'test',
+        },
+      })
+      .then(
+        function (response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log('Response', response);
+        },
+        function (err) {
+          console.error('Execute error', err);
+        }
+      );
   }
 }

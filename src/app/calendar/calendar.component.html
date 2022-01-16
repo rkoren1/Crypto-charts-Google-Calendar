@@ -11,6 +11,6 @@
   endDateExpr="end.dateTime"
   textExpr="summary"
   (onAppointmentAdded)="onAppointmentAdded($event)"
-  (onAppointmentFormOpening)="signIn()"
+  (onAppointmentFormOpening)="authenticate().then(loadClient)"
 >
 </dx-scheduler>
