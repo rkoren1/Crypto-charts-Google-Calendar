@@ -7,7 +7,6 @@ import {
 import { HttpClient } from '@angular/common/http';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
-import { GoogleSigninService } from '../google-signin.service';
 
 @Component({
   selector: 'app-calendar',
@@ -16,13 +15,7 @@ import { GoogleSigninService } from '../google-signin.service';
 })
 export class CalendarComponent implements OnInit {
   dataSource: DataSource;
-  user!: gapi.auth2.GoogleUser;
-  dataUrl = [
-    'https://www.googleapis.com/calendar/v3/calendars/',
-    'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
-    '/events?key=',
-    'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM',
-  ].join('');
+  //user!: gapi.auth2.GoogleUser;
 
   private getData(options: any, requestOptions: any) {
     const PUBLIC_KEY = 'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM';
@@ -41,16 +34,11 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  constructor(
-    private http: HttpClient,
-    private signInService: GoogleSigninService,
-    private ref: ChangeDetectorRef
-  ) {
+  constructor(private http: HttpClient) {
     this.dataSource = new DataSource({
       store: new CustomStore({
         load: (options) => this.getData(options, { showDeleted: false }),
         insert: (values) => {
-          console.log(values);
           return gapi.client.calendar.events
             .insert({
               calendarId:
@@ -67,21 +55,46 @@ export class CalendarComponent implements OnInit {
               }
             );
         },
+        remove: (key) => {
+          return gapi.client.calendar.events
+            .delete({
+              calendarId:
+                'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+              eventId: key.id,
+            })
+            .then(
+              function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log('Response', response);
+              },
+              function (err) {
+                console.error('Execute error', err);
+              }
+            );
+        },
+        update: (key, values) => {
+          return gapi.client.calendar.events
+            .patch({
+              calendarId:
+                'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+              eventId: key.id,
+              resource: values,
+            })
+            .then(
+              function (response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log('Response', response);
+              },
+              function (err) {
+                console.error('Execute error', err);
+              }
+            );
+        },
       }),
     });
   }
-  onAppointmentAdded(e: any) {
-    //console.log(e.appointmentData);
-  }
 
   ngOnInit(): void {
-    /*
-    this.signInService.observable().subscribe((user) => {
-      this.user = user;
-      this.ref.detectChanges();
-    });
-    */
-
     gapi.load('client:auth2', function () {
       gapi.auth2.init({
         client_id:
@@ -90,16 +103,10 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  signIn() {
-    if (this.user == null) this.signInService.signIn();
-    console.log(this.signInService.displayToken());
-  }
-  signOut() {
-    this.signInService.signOut();
-  }
   test() {
     console.log('dela');
   }
+
   authenticate() {
     return gapi.auth2
       .getAuthInstance()
@@ -116,6 +123,7 @@ export class CalendarComponent implements OnInit {
         }
       );
   }
+
   loadClient() {
     gapi.client.setApiKey('AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM');
     return gapi.client
@@ -132,28 +140,5 @@ export class CalendarComponent implements OnInit {
         }
       );
   }
-  execute() {
-    return gapi.client.calendar.events
-      .insert({
-        calendarId: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
-        resource: {
-          end: {
-            date: '2022-01-24',
-          },
-          start: {
-            date: '2022-01-24',
-          },
-          summary: 'test',
-        },
-      })
-      .then(
-        function (response) {
-          // Handle the results here (response.result has the parsed body).
-          console.log('Response', response);
-        },
-        function (err) {
-          console.error('Execute error', err);
-        }
-      );
-  }
+
 }
