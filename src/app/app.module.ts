@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
 import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
-import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
 import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
 import { SectorsComponent } from './sectors/sectors.component';
@@ -38,7 +37,6 @@ import { CalendarComponent } from './calendar/calendar.component';
     SideNavInnerToolbarModule,
     SingleCardModule,
     FooterModule,
-    UnauthenticatedContentModule,
     AppRoutingModule,
     DxButtonModule,
     DxDataGridModule,
