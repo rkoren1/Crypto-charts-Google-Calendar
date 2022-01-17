@@ -14,7 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { StandardChartComponent } from './graphs/standard-chart/standard-chart.component';
 import { JsonTableComponent } from './graphs/jsonTable/jsonTable.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -56,7 +56,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     DxSchedulerModule,
 
   ],
-  providers: [ ScreenService, AppInfoService],
+  providers: [ ScreenService, AppInfoService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

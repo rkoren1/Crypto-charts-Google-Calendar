@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-calendar',
@@ -11,7 +12,131 @@ import CustomStore from 'devextreme/data/custom_store';
 export class CalendarComponent implements OnInit {
   dataSource: DataSource;
   isSignedIn: boolean = false;
-
+  test1 = [
+    {
+      kind: 'calendar#event',
+      etag: '"3284294235172000"',
+      id: '0f1pe6i1hb5b9mv40msv2nvb0i',
+      status: 'confirmed',
+      htmlLink:
+        'https://www.google.com/calendar/event?eid=MGYxcGU2aTFoYjViOW12NDBtc3YybnZiMGkgbmpkbWpraTJicGFwazdvMWVjNGJkODNkdnNAZw',
+      created: '2022-01-14T07:58:37.000Z',
+      updated: '2022-01-14T07:58:37.586Z',
+      summary: 'test2',
+      creator: {
+        email: 'rok.koren2@gmail.com',
+      },
+      organizer: {
+        email: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+        displayName: 'CalendarApp',
+        self: true,
+      },
+      start: {
+        dateTime: '2022-01-17T09:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      end: {
+        dateTime: '2022-01-17T10:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      iCalUID: '0f1pe6i1hb5b9mv40msv2nvb0i@google.com',
+      sequence: 0,
+      eventType: 'default',
+    },
+    {
+      kind: 'calendar#event',
+      etag: '"3284850500874000"',
+      id: 'bcvtpam5uurdsoq43p9031nsps',
+      status: 'confirmed',
+      htmlLink:
+        'https://www.google.com/calendar/event?eid=YmN2dHBhbTV1dXJkc29xNDNwOTAzMW5zcHMgbmpkbWpraTJicGFwazdvMWVjNGJkODNkdnNAZw',
+      created: '2022-01-17T13:14:10.000Z',
+      updated: '2022-01-17T13:14:10.437Z',
+      summary: 'gfhgf',
+      description: 'gfhgf',
+      creator: {
+        email: 'rok.koren2@gmail.com',
+      },
+      organizer: {
+        email: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+        displayName: 'CalendarApp',
+        self: true,
+      },
+      start: {
+        dateTime: '2022-01-21T00:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      end: {
+        dateTime: '2022-01-21T10:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      iCalUID: 'bcvtpam5uurdsoq43p9031nsps@google.com',
+      sequence: 0,
+      eventType: 'default',
+    },
+    {
+      kind: 'calendar#event',
+      etag: '"3284895919276000"',
+      id: '663orbnf93oc4f28qbp2dvisns',
+      status: 'confirmed',
+      htmlLink:
+        'https://www.google.com/calendar/event?eid=NjYzb3JibmY5M29jNGYyOHFicDJkdmlzbnMgbmpkbWpraTJicGFwazdvMWVjNGJkODNkdnNAZw',
+      created: '2022-01-17T19:32:39.000Z',
+      updated: '2022-01-17T20:32:39.638Z',
+      summary: '657657',
+      description: '567657',
+      creator: {
+        email: 'rok.koren2@gmail.com',
+      },
+      organizer: {
+        email: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+        displayName: 'CalendarApp',
+        self: true,
+      },
+      start: {
+        dateTime: '2022-01-20T00:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      end: {
+        dateTime: '2022-01-20T00:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      iCalUID: '663orbnf93oc4f28qbp2dvisns@google.com',
+      sequence: 0,
+      eventType: 'default',
+    },
+    {
+      kind: 'calendar#event',
+      etag: '"3284896403552000"',
+      id: 'lun561s6500lfrl468i2mld8nc',
+      status: 'confirmed',
+      htmlLink:
+        'https://www.google.com/calendar/event?eid=bHVuNTYxczY1MDBsZnJsNDY4aTJtbGQ4bmMgbmpkbWpraTJicGFwazdvMWVjNGJkODNkdnNAZw',
+      created: '2022-01-17T19:36:41.000Z',
+      updated: '2022-01-17T19:36:41.776Z',
+      summary: '567567',
+      description: '56765765',
+      creator: {
+        email: 'rok.koren2@gmail.com',
+      },
+      organizer: {
+        email: 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com',
+        displayName: 'CalendarApp',
+        self: true,
+      },
+      start: {
+        dateTime: '2022-01-19T00:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      end: {
+        dateTime: '2022-01-20T00:00:00+01:00',
+        timeZone: 'Europe/Belgrade',
+      },
+      iCalUID: 'lun561s6500lfrl468i2mld8nc@google.com',
+      sequence: 0,
+      eventType: 'default',
+    },
+  ];
   private getData(options: any, requestOptions: any) {
     const PUBLIC_KEY = 'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM';
     const CALENDAR_ID = 'njdmjki2bpapk7o1ec4bd83dvs@group.calendar.google.com';
@@ -27,17 +152,44 @@ export class CalendarComponent implements OnInit {
       .get(dataUrl, requestOptions)
       .toPromise()
       .then((data: any) => {
-        return data.items;
+        let newData = data.items.map((val: any) => {
+          if (val?.end?.date) {
+            const newItem = val;
+            newItem['allDay'] = true;
+            newItem.start.dateTime = newItem.start.date;
+            newItem.end.dateTime = newItem.end.date;
+            return newItem;
+          } else {
+            const newItem = val;
+            newItem['allDay'] = false;
+            return newItem;
+          }
+          return val;
+        });
+        return /* this.test1;  */ newData;
       });
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private datePipe: DatePipe) {
     this.dataSource = new DataSource({
       store: new CustomStore({
         load: (options) => {
           return this.getData(options, { showDeleted: false });
         },
         insert: (values) => {
+          if (values?.allDay) {
+            values.end.date = datePipe.transform(
+              values.end.dateTime,
+              'yyyy-MM-dd'
+            );
+            values.start.date = datePipe.transform(
+              values.start.dateTime,
+              'yyyy-MM-dd'
+            );
+            delete values.start.dateTime;
+            delete values.end.dateTime;
+            delete values.allDay;
+          }
           return gapi.client.calendar.events
             .insert({
               calendarId:
@@ -72,6 +224,19 @@ export class CalendarComponent implements OnInit {
             );
         },
         update: (key, values) => {
+          if (values?.allDay) {
+            values.end.date = datePipe.transform(
+              values.end.dateTime,
+              'yyyy-MM-dd'
+            );
+            values.start.date = datePipe.transform(
+              values.start.dateTime,
+              'yyyy-MM-dd'
+            );
+            delete values.start.dateTime;
+            delete values.end.dateTime;
+            delete values.allDay;
+          }
           return gapi.client.calendar.events
             .patch({
               calendarId:

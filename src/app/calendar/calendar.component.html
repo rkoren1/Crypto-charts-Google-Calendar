@@ -5,10 +5,11 @@
   timeZone="Europe/Belgrade"
   startDateExpr="start.dateTime"
   endDateExpr="end.dateTime"
-  currentView="month"
-  [views]="['week', 'month', 'agenda']"
+  currentView="week"
+  [views]="['day', 'week', 'month', 'agenda']"
   textExpr="summary"
   (onAppointmentClick)="zeVpisan()"
   (onAppointmentFormOpening)="zeVpisan()"
+  allDayExpr="allDay"
 >
 </dx-scheduler>
