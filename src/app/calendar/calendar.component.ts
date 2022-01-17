@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
@@ -15,7 +10,7 @@ import CustomStore from 'devextreme/data/custom_store';
 })
 export class CalendarComponent implements OnInit {
   dataSource: DataSource;
-  //user!: gapi.auth2.GoogleUser;
+  isSignedIn: boolean = false;
 
   private getData(options: any, requestOptions: any) {
     const PUBLIC_KEY = 'AIzaSyB7xtRv85QdFium7U2-aoYLqUhzHS_xpaM';
@@ -95,7 +90,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    gapi.load('client:auth2', function () {
+    gapi.load('client:auth2', () => {
       gapi.auth2.init({
         client_id:
           '379646810701-pd2bq1jpqrcjtq8gvqker5htaugaa8ub.apps.googleusercontent.com',
@@ -106,6 +101,10 @@ export class CalendarComponent implements OnInit {
   test() {
     console.log('dela');
   }
+  zeVpisan() {
+    if (this.isSignedIn) return;
+    this.authenticate().then(this.loadClient);
+  }
 
   authenticate() {
     return gapi.auth2
@@ -115,10 +114,12 @@ export class CalendarComponent implements OnInit {
           'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
       })
       .then(
-        function () {
+        () => {
           //console.log('Sign-in successful');
+          this.isSignedIn = true;
         },
-        function (err) {
+        (err) => {
+          this.isSignedIn = false;
           console.error('Error signing in', err);
         }
       );
