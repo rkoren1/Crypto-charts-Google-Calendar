@@ -21,6 +21,8 @@ export class CalendarComponent implements OnInit {
       '/events?key=',
       PUBLIC_KEY,
     ].join('');
+    {
+    }
     return this.http
       .get(dataUrl, requestOptions)
       .toPromise()
@@ -32,7 +34,9 @@ export class CalendarComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.dataSource = new DataSource({
       store: new CustomStore({
-        load: (options) => this.getData(options, { showDeleted: false }),
+        load: (options) => {
+          return this.getData(options, { showDeleted: false });
+        },
         insert: (values) => {
           return gapi.client.calendar.events
             .insert({
