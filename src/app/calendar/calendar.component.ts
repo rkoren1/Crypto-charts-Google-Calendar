@@ -156,15 +156,34 @@ export class CalendarComponent implements OnInit {
           if (val?.end?.date) {
             const newItem = val;
             newItem['allDay'] = true;
-            newItem.start.dateTime = newItem.start.date;
-            newItem.end.dateTime = newItem.end.date;
+            newItem.startDate = this.datePipe.transform(
+              newItem.start.date,
+              'yyyy-MM-ddTHH:mm:ssZ'
+            );
+            newItem.endDate = this.datePipe.transform(
+              newItem.end.date,
+              'yyyy-MM-ddTHH:mm:ssZ'
+            );
+            newItem.startDate = new Date(newItem.start.date).toLocaleString();
+            newItem.endDate = new Date(newItem.end.date).toLocaleString();
             return newItem;
           } else {
             const newItem = val;
             newItem['allDay'] = false;
+            newItem.startDate = this.datePipe.transform(
+              newItem.start.dateTime,
+              'yyyy-MM-ddTHH:mm:ssZ'
+            );
+            newItem.endDate = this.datePipe.transform(
+              newItem.end.dateTime,
+              'yyyy-MM-ddTHH:mm:ssZ'
+            );
+            newItem.endDate = new Date(newItem.end.dateTime).toLocaleString();
+            newItem.startDate = new Date(
+              newItem.start.dateTime
+            ).toLocaleString();
             return newItem;
           }
-          return val;
         });
         return /* this.test1;  */ newData;
       });
@@ -178,18 +197,22 @@ export class CalendarComponent implements OnInit {
         },
         insert: (values) => {
           if (values?.allDay) {
-            values.end.date = datePipe.transform(
-              values.end.dateTime,
-              'yyyy-MM-dd'
-            );
+            values.end = {};
+            values.end.date = datePipe.transform(values.endDate, 'yyyy-MM-dd');
+            values.start = {};
             values.start.date = datePipe.transform(
-              values.start.dateTime,
+              values.startDate,
               'yyyy-MM-dd'
             );
-            delete values.start.dateTime;
-            delete values.end.dateTime;
-            delete values.allDay;
+          } else {
+            values.end = {};
+            values.end.dateTime = values.endDate;
+            values.start = {};
+            values.start.dateTime = values.startDate;
           }
+          delete values.startDate;
+          delete values.endDate;
+          delete values.allDay;
           return gapi.client.calendar.events
             .insert({
               calendarId:
@@ -225,18 +248,22 @@ export class CalendarComponent implements OnInit {
         },
         update: (key, values) => {
           if (values?.allDay) {
-            values.end.date = datePipe.transform(
-              values.end.dateTime,
-              'yyyy-MM-dd'
-            );
+            values.end = {};
+            values.end.date = datePipe.transform(values.endDate, 'yyyy-MM-dd');
+            values.start = {};
             values.start.date = datePipe.transform(
-              values.start.dateTime,
+              values.startDate,
               'yyyy-MM-dd'
             );
-            delete values.start.dateTime;
-            delete values.end.dateTime;
-            delete values.allDay;
+          } else {
+            values.end = {};
+            values.end.dateTime = values.endDate;
+            values.start = {};
+            values.start.dateTime = values.startDate;
           }
+          delete values.startDate;
+          delete values.endDate;
+          delete values.allDay;
           return gapi.client.calendar.events
             .patch({
               calendarId:

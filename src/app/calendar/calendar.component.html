@@ -3,13 +3,16 @@
   class="long-title"
   id="scheduler"
   timeZone="Europe/Belgrade"
-  startDateExpr="start.dateTime"
-  endDateExpr="end.dateTime"
-  currentView="week"
+  startDateExpr="startDate"
+  endDateExpr="endDate"
+  currentView="day"
   [views]="['day', 'week', 'month', 'agenda']"
   textExpr="summary"
   (onAppointmentClick)="zeVpisan()"
   (onAppointmentFormOpening)="zeVpisan()"
   allDayExpr="allDay"
+  dateSerializationFormat="yyyy-MM-ddTHH:mm:ssZ"
 >
 </dx-scheduler>
+<!--
+ -->
