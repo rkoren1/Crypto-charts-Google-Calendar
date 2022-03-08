@@ -58,7 +58,7 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   onContentReady(e: dxDataGrid) {
     this.selectedSubscription =
-      this.storeFacadeService.getSelectedData$.subscribe((selectaneVrstice) => {
+      this.storeFacadeService.getSelectedData$.subscribe((selectaneVrstice: any) => {
         if (selectaneVrstice !== undefined)
           this.selectedRows = selectaneVrstice;
       });
@@ -102,20 +102,20 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.subscription = this.storeFacadeService.selectData$.subscribe(
-      (data) => (this.podatki = data)
+      (data:any) => (this.podatki = data)
     );
     this.xSubscription = this.storeFacadeService.getSelectedX$.subscribe(
-      (xOs) => {
+      (xOs: any) => {
         if (xOs !== undefined) this.xAxis = xOs;
       }
     );
     this.ySubscription = this.storeFacadeService.getSelectedY$.subscribe(
-      (yOs) => {
+      (yOs: any) => {
         if (yOs !== undefined) this.yAxis = yOs;
       }
     );
     this.groupedFieldSubscrition =
-      this.storeFacadeService.getSelectedGroups$.subscribe((grupe) => {
+      this.storeFacadeService.getSelectedGroups$.subscribe((grupe: any) => {
         if (grupe != undefined) this.groups = grupe;
       });
   }
