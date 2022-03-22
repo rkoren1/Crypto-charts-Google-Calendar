@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SalesDashboardv2": {
+    "DemoApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SalesDashboardv2",
+            "outputPath": "dist/DemoApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -95,10 +95,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SalesDashboardv2:build:production"
+              "browserTarget": "DemoApp:build:production"
             },
             "development": {
-              "browserTarget": "SalesDashboardv2:build:development"
+              "browserTarget": "DemoApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SalesDashboardv2:build"
+            "browserTarget": "DemoApp:build"
           }
         },
         "test": {
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "SalesDashboardv2"
+  "defaultProject": "DemoApp"
 }
