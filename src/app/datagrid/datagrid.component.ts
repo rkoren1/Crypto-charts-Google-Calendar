@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { JsonTableComponent } from '../graphs/jsonTable/jsonTable.component';
 
 @Component({
-  selector: 'app-channels',
-  templateUrl: './channels.component.html',
-  styleUrls: ['./channels.component.scss']
+  selector: 'app-datagrid',
+  templateUrl: './datagrid.component.html',
+  styleUrls: ['./datagrid.component.scss']
 })
-export class ChannelsComponent implements OnInit {
+export class DatagridComponent implements OnInit {
 
 
 

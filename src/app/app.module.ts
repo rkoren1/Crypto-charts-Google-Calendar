@@ -8,7 +8,7 @@ import {  ScreenService, AppInfoService } from './shared/services';
 import { AppRoutingModule } from './app-routing.module';
 import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
 import { SectorsComponent } from './sectors/sectors.component';
-import { ChannelsComponent } from './channels/channels.component';
+import { DatagridComponent } from './datagrid/datagrid.component'; 
 import {FormsStoreModule} from './Store/store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -25,7 +25,7 @@ import { CalendarComponent } from './calendar/calendar.component';
   declarations: [
     AppComponent,
       SectorsComponent,
-      ChannelsComponent,
+      DatagridComponent,
       StandardChartComponent,
       JsonTableComponent,
       StackedChartComponent,
