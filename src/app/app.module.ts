@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SideNavOuterToolbarModule, SideNavInnerToolbarModule, SingleCardModule } from './layouts';
+import { SideNavOuterToolbarModule, SideNavInnerToolbarModule} from './layouts';
 import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +35,6 @@ import { CalendarComponent } from './calendar/calendar.component';
     BrowserModule,
     SideNavOuterToolbarModule,
     SideNavInnerToolbarModule,
-    SingleCardModule,
     FooterModule,
     AppRoutingModule,
     DxButtonModule,
