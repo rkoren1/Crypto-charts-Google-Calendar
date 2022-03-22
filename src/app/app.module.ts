@@ -7,7 +7,7 @@ import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
 import { AppRoutingModule } from './app-routing.module';
 import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
-import { SectorsComponent } from './sectors/sectors.component';
+import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
 import { DatagridComponent } from './datagrid/datagrid.component'; 
 import {FormsStoreModule} from './Store/store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -15,16 +15,16 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule, DatePipe } from '@angular/common';
-import { StandardChartComponent } from './graphs/standard-chart/standard-chart.component';
-import { JsonTableComponent } from './graphs/jsonTable/jsonTable.component';
+import { StandardChartComponent } from './graphs-display/standard-chart/standard-chart.component';
+import { JsonTableComponent } from './datagrid/jsonTable/jsonTable.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StackedChartComponent } from './graphs/stackedChart/stackedChart.component';
+import { StackedChartComponent } from './graphs-display/stackedChart/stackedChart.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-      SectorsComponent,
+      GraphsDisplayComponent,
       DatagridComponent,
       StandardChartComponent,
       JsonTableComponent,

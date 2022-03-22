@@ -3,11 +3,11 @@ import { Subscription } from 'rxjs';
 import { StoreFacadeService } from '../Store/store-facade.service';
 
 @Component({
-  selector: 'app-sectors',
-  templateUrl: './sectors.component.html',
-  styleUrls: ['./sectors.component.scss'],
+  selector: 'app-graphs-display',
+  templateUrl: './graphs-display.component.html',
+  styleUrls: ['./graphs-display.component.scss'],
 })
-export class SectorsComponent implements OnInit {
+export class GraphsDisplayComponent implements OnInit {
   prikaziGrafe: boolean = false;
   groups: string = '';
   xAxis: string = '';

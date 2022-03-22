@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonTableComponent } from '../graphs/jsonTable/jsonTable.component';
+import { JsonTableComponent } from './jsonTable/jsonTable.component';
 
 @Component({
   selector: 'app-datagrid',

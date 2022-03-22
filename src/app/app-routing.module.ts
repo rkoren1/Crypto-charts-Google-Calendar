@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
-import { SectorsComponent } from './sectors/sectors.component';
+import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
 import { DatagridComponent } from './datagrid/datagrid.component'; 
 import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
     path: 'charts',
-    component: SectorsComponent,
+    component: GraphsDisplayComponent,
   },
   {
     path: 'datagrid',
