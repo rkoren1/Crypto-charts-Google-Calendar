@@ -6,6 +6,7 @@
   (onSelectionChanged)="drawChart()"
   (onContentReady)="onContentReady($event)"
   [(selectedRowKeys)]="selectedRows"
+  [height] = "'75vh'"
 >
   <dxo-group-panel [visible]="true" [allowColumnDragging]="true">
   </dxo-group-panel>
@@ -70,6 +71,7 @@
       [items]="tableHeaders"
       (onValueChanged)="selectanaGroupa($event)"
       label="Group by:"
+      [showClearButton] ="true"
     ></dx-select-box>
   </div>
   <div class="column">
@@ -79,6 +81,7 @@
       [items]="tableHeaders"
       (onItemClick)="selectanX($event)"
       label="X axis:"
+      [showClearButton] ="true"
     ></dx-select-box>
   </div>
   <div class="column">
@@ -88,6 +91,7 @@
       class="selectBox"
       [items]="tableHeaders"
       label="Y axis:"
+      [showClearButton] ="true"
     ></dx-select-box>
   </div>
 </div>

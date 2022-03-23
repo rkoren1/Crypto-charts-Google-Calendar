@@ -2,18 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": ["gapi", "gapi.auth2", "gapi.client.calendar"],
     "paths": {
-      "jszip": [
-        "node_modules/jszip/dist/jszip.min.js"
-      ]
+      "jszip": ["node_modules/jszip/dist/jszip.min.js"]
     }
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["src/**/*.d.ts"]
 }

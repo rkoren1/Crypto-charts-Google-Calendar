@@ -1,0 +1,18 @@
+<dx-scheduler
+  [dataSource]="dataSource"
+  class="long-title"
+  id="scheduler"
+  timeZone="Europe/Belgrade"
+  startDateExpr="startDate"
+  endDateExpr="endDate"
+  currentView="week"
+  [views]="['day', 'week', 'month', 'agenda']"
+  textExpr="summary"
+  (onAppointmentClick)="zeVpisan()"
+  (onAppointmentFormOpening)="zeVpisan()"
+  allDayExpr="allDay"
+  dateSerializationFormat="yyyy-MM-ddTHH:mm:ssZ"
+>
+</dx-scheduler>
+<!--
+ -->

@@ -9,4 +9,9 @@ export const navigation = [
     path: '/charts',
     icon: 'chart',
   },
+  {
+    text: 'Calendar',
+    path: '/calendar',
+    icon: 'event',
+  },
 ];

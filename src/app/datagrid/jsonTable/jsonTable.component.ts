@@ -65,7 +65,6 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
     //fills grouping selector
     if (this.podatki.length != 0) {
-      this.tableHeaders.push('');
       this.tableHeaders.push(...this.getTableHeaders(this.podatki));
     }
 
