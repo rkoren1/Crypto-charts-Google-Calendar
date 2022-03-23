@@ -1,15 +1,11 @@
 .column {
-  float: left;
   display: flex;
   width: 33%;
   justify-content: center;
-  align-items: center;
 }
 .row {
   display: flex;
-  width: 100%;
   height: calc(23vh - 56px);
-  margin: 0 auto;
   align-items: center;
   justify-content: center;
 }
