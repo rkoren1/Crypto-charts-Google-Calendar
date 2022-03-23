@@ -44,7 +44,7 @@ export class CalendarComponent implements OnInit {
             newItem.endDate = new Date(newItem.end.date);
 
             newItem.endDate.setDate(newItem.endDate.getDate() - 1);
-            
+
             newItem.endDate = newItem.endDate.toLocaleString();
             return newItem;
           } else {
@@ -216,5 +216,9 @@ export class CalendarComponent implements OnInit {
           console.error('Error loading GAPI client for API', err);
         }
       );
+  }
+  schedulerHeight()
+  {
+    return window.innerHeight-76;
   }
 }
