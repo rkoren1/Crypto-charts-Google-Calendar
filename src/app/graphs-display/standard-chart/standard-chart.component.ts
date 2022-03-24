@@ -53,4 +53,26 @@ export class StandardChartComponent implements OnInit, OnDestroy {
     if(this.allDatasubscription!= undefined)
     this.allDatasubscription.unsubscribe();
   }
+  legendClickHandler(e: any)
+  {
+    const arg = e.target;
+    const item = e.component.getAllSeries()[0].getPointsByArg(arg)[0];
+
+    this.toggleVisibility(item);
+  }
+  toggleVisibility(item: any) {
+    if (item.isVisible()) {
+      item.hide();
+    } else {
+      item.show();
+    }
+  }
+  pointClickHandler(e:any)
+  {
+    this.toggleVisibility(e.target);
+  }
+  customizeLabel(arg: any)
+  {
+    return `${arg.argumentText}`;
+  }
 }
