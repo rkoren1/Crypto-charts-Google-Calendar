@@ -15,11 +15,18 @@
   [title]="chartName"
   palette="Soft Pastel"
   [dataSource]="podatki"
+  (onLegendClick)="legendClickHandler($event)"
+  (onPointClick)="pointClickHandler($event)"
+  [resolveLabelOverlapping]="'hide'"
 >
-  <dxi-series [argumentField]="xAxis" [valueField]="yAxis"> </dxi-series>
+  <dxi-series [argumentField]="xAxis" [valueField]="yAxis">
+    <dxo-label [visible]="true" [customizeText]="customizeLabel">
+      <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+    </dxo-label>
+  </dxi-series>
   <dxo-export [enabled]="true"></dxo-export>
-  <dxo-legend
-    [margin]="0"
+  <dxo-legend [visible] = "false"
+      [margin]="0"
     horizontalAlignment="right"
     verticalAlignment="top"
   ></dxo-legend>

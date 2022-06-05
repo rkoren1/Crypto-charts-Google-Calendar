@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SideNavInnerToolbarModule} from './layouts';
-import { FooterModule } from './shared/components';
 import {  ScreenService, AppInfoService } from './shared/services';
 import { AppRoutingModule } from './app-routing.module';
 import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
@@ -35,7 +34,6 @@ import { CalendarComponent } from './calendar/calendar.component';
     BrowserModule,
     SideNavOuterToolbarModule,
     SideNavInnerToolbarModule,
-    FooterModule,
     AppRoutingModule,
     DxButtonModule,
     DxDataGridModule,
