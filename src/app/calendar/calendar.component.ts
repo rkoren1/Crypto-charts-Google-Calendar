@@ -217,8 +217,7 @@ export class CalendarComponent implements OnInit {
         }
       );
   }
-  schedulerHeight()
-  {
-    return window.innerHeight-76;
+  schedulerHeight() {
+    return window.innerHeight - 56;
   }
 }
