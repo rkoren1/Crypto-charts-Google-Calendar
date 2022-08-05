@@ -2,13 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SideNavOuterToolbarModule, SideNavInnerToolbarModule} from './layouts';
-import {  ScreenService, AppInfoService } from './shared/services';
+import { SideNavOuterToolbarModule } from './layouts';
+import { ScreenService, AppInfoService } from './shared/services';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule, DxChartModule, DxDataGridModule, DxPieChartModule, DxSchedulerModule, DxSelectBoxModule} from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxChartModule,
+  DxDataGridModule,
+  DxPieChartModule,
+  DxSchedulerModule,
+  DxSelectBoxModule,
+} from 'devextreme-angular';
 import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
-import { DatagridComponent } from './datagrid/datagrid.component'; 
-import {FormsStoreModule} from './Store/store.module';
+import { DatagridComponent } from './datagrid/datagrid.component';
+import { FormsStoreModule } from './Store/store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
@@ -23,17 +30,16 @@ import { CalendarComponent } from './calendar/calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
-      GraphsDisplayComponent,
-      DatagridComponent,
-      StandardChartComponent,
-      JsonTableComponent,
-      StackedChartComponent,
-      CalendarComponent,
-   ],
+    GraphsDisplayComponent,
+    DatagridComponent,
+    StandardChartComponent,
+    JsonTableComponent,
+    StackedChartComponent,
+    CalendarComponent,
+  ],
   imports: [
     BrowserModule,
     SideNavOuterToolbarModule,
-    SideNavInnerToolbarModule,
     AppRoutingModule,
     DxButtonModule,
     DxDataGridModule,
@@ -44,16 +50,18 @@ import { CalendarComponent } from './calendar/calendar.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     DxChartModule,
     CommonModule,
     HttpClientModule,
     DxSelectBoxModule,
     DxPieChartModule,
     DxSchedulerModule,
-
   ],
-  providers: [ ScreenService, AppInfoService, DatePipe],
-  bootstrap: [AppComponent]
+  providers: [ScreenService, AppInfoService, DatePipe],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
