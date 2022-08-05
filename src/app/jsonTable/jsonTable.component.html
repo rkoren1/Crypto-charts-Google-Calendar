@@ -1,0 +1,98 @@
+<div class="tabela">
+  <dx-data-grid
+    #dataGridRef
+    id="gridContainer"
+    [dataSource]="podatki"
+    [showBorders]="true"
+    (onSelectionChanged)="drawChart()"
+    (onContentReady)="onContentReady($event)"
+    [(selectedRowKeys)]="selectedRows"
+    [height]="'78vh'"
+  >
+    <dxo-group-panel [visible]="true" [allowColumnDragging]="true">
+    </dxo-group-panel>
+
+    <dxo-search-panel
+      [visible]="true"
+      [highlightSearchText]="false"
+    ></dxo-search-panel>
+
+    <dxo-paging [pageSize]="10"></dxo-paging>
+
+    <dxo-pager
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[10, 15, 25, 50, 100]"
+    ></dxo-pager>
+
+    <dxo-selection
+      [selectAllMode]="'allPages'"
+      [showCheckBoxesMode]="'onClick'"
+      mode="multiple"
+    ></dxo-selection>
+
+    <dxi-column dataField="symbol" dataType="string"></dxi-column>
+    <dxi-column dataField="name" dataType="string"></dxi-column>
+    <dxi-column
+      dataField="price_usd"
+      dataType="number"
+      caption="Price"
+      [format]="{ style: 'currency', currency: 'USD' }"
+    ></dxi-column>
+    <dxi-column
+      dataField="tsupply"
+      dataType="number"
+      caption="Total supply"
+      format="currency"
+    ></dxi-column>
+    <dxi-column
+      dataField="percent_change_24h"
+      caption="Change 24h"
+      dataType="number"
+      format="percent"
+    ></dxi-column>
+    <dxi-column
+      dataField="market_cap_usd"
+      caption="Market cap"
+      dataType="number"
+      format="currency"
+    ></dxi-column>
+    <dxi-column
+      dataField="volume24"
+      caption="Volume 24h"
+      dataType="number"
+      format="currency"
+    ></dxi-column>
+  </dx-data-grid>
+</div>
+<div class="row">
+  <div class="column">
+    <dx-select-box
+      #groupingSelectBoxRef
+      class="selectBox"
+      [items]="tableHeaders"
+      (onValueChanged)="selectanaGroupa($event)"
+      label="Group by:"
+      [showClearButton]="true"
+    ></dx-select-box>
+  </div>
+  <div class="column">
+    <dx-select-box
+      #xBoxRef
+      class="selectBox"
+      [items]="tableHeaders"
+      (onItemClick)="selectanX($event)"
+      label="X axis:"
+      [showClearButton]="true"
+    ></dx-select-box>
+  </div>
+  <div class="column">
+    <dx-select-box
+      #yBoxRef
+      (onItemClick)="selectanY($event)"
+      class="selectBox"
+      [items]="tableHeaders"
+      label="Y axis:"
+      [showClearButton]="true"
+    ></dx-select-box>
+  </div>
+</div>

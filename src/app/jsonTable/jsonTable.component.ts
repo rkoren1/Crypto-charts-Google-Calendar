@@ -10,7 +10,7 @@ import dxDataGrid from 'devextreme/ui/data_grid';
 import { Subscription } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
-import { StoreFacadeService } from '../../Store/store-facade.service';
+import { StoreFacadeService } from '../Store/store-facade.service';
 
 @Component({
   selector: 'app-jsonTable',
@@ -72,14 +72,14 @@ export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.xBox.instance.option('value', this.xAxis);
     this.yBox.instance.option('value', this.yAxis);
 
-    var colNames=[];
- for (var i=0;i<this.dataGrid.instance.columnCount();i++){
-   if(this.dataGrid.instance.columnOption(i,"groupIndex") > -1){
-      colNames.push(this.dataGrid.instance.columnOption(i,"dataField"));
-   }
- }
-  this.groups = colNames;
-  this.groupingBox.instance.option('value', this.groups[0]);
+    var colNames = [];
+    for (var i = 0; i < this.dataGrid.instance.columnCount(); i++) {
+      if (this.dataGrid.instance.columnOption(i, 'groupIndex') > -1) {
+        colNames.push(this.dataGrid.instance.columnOption(i, 'dataField'));
+      }
+    }
+    this.groups = colNames;
+    this.groupingBox.instance.option('value', this.groups[0]);
     //this.dataGrid.instance.columnOption(this.groups[0], 'groupIndex', 0);
     //this.groups = this.dataGrid.instance.getDataSource().group()[0].selector;
 

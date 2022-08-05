@@ -14,7 +14,6 @@ import {
   DxSelectBoxModule,
 } from 'devextreme-angular';
 import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
-import { DatagridComponent } from './datagrid/datagrid.component';
 import { FormsStoreModule } from './Store/store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -22,7 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule, DatePipe } from '@angular/common';
 import { StandardChartComponent } from './graphs-display/standard-chart/standard-chart.component';
-import { JsonTableComponent } from './datagrid/jsonTable/jsonTable.component';
+import { JsonTableComponent } from './jsonTable/jsonTable.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StackedChartComponent } from './graphs-display/stackedChart/stackedChart.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -31,7 +30,6 @@ import { CalendarComponent } from './calendar/calendar.component';
   declarations: [
     AppComponent,
     GraphsDisplayComponent,
-    DatagridComponent,
     StandardChartComponent,
     JsonTableComponent,
     StackedChartComponent,

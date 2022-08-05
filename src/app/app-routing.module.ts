@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
-import { DatagridComponent } from './datagrid/datagrid.component'; 
 import { CalendarComponent } from './calendar/calendar.component';
+import { JsonTableComponent } from './jsonTable/jsonTable.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'datagrid',
-    component: DatagridComponent,
+    component: JsonTableComponent,
   },
   {
     path: 'calendar',
