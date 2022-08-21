@@ -7,7 +7,7 @@ import { StoreFacadeService } from '../Store/store-facade.service';
   templateUrl: './graphs-display.component.html',
   styleUrls: ['./graphs-display.component.scss'],
 })
-export class GraphsDisplayComponent implements OnInit {
+export class GraphsDisplayComponent implements OnInit, OnDestroy {
   prikaziGrafe: boolean = false;
   groups: string = '';
   xAxis: string = '';

@@ -13,9 +13,9 @@ import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from '../Store/store-facade.service';
 
 @Component({
-  selector: 'app-jsonTable',
-  templateUrl: './jsonTable.component.html',
-  styleUrls: ['./jsonTable.component.scss'],
+  selector: 'app-json-table',
+  templateUrl: './json-table.component.html',
+  styleUrls: ['./json-table.component.scss'],
 })
 export class JsonTableComponent implements OnInit, OnDestroy, AfterViewInit {
   podatki: OblikaPodatkov[] = [];

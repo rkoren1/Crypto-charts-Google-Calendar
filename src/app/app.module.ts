@@ -21,9 +21,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule, DatePipe } from '@angular/common';
 import { StandardChartComponent } from './graphs-display/standard-chart/standard-chart.component';
-import { JsonTableComponent } from './jsonTable/jsonTable.component';
+import { JsonTableComponent } from './jsonTable/json-table.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StackedChartComponent } from './graphs-display/stackedChart/stackedChart.component';
+import { StackedChartComponent } from './graphs-display/stackedChart/stacked-chart.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({

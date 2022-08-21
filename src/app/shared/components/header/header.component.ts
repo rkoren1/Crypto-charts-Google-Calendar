@@ -1,4 +1,11 @@
-import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  NgModule,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DxButtonModule } from 'devextreme-angular/ui/button';
@@ -8,10 +15,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output()
   menuToggle = new EventEmitter<boolean>();
 
@@ -21,26 +27,16 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-
-
-
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  constructor(private router: Router) {}
 
   toggleMenu = () => {
     this.menuToggle.emit();
-  }
+  };
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DxButtonModule,
-    DxToolbarModule
-  ],
-  declarations: [ HeaderComponent ],
-  exports: [ HeaderComponent ]
+  imports: [CommonModule, DxButtonModule, DxToolbarModule],
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent],
 })
-export class HeaderModule { }
+export class HeaderModule {}

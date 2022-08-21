@@ -4,9 +4,9 @@ import { OblikaPodatkov } from 'src/app/Store/interfaces/datagrid.model';
 import { StoreFacadeService } from 'src/app/Store/store-facade.service';
 
 @Component({
-  selector: 'app-stackedChart',
-  templateUrl: './stackedChart.component.html',
-  styleUrls: ['./stackedChart.component.scss'],
+  selector: 'app-stacked-chart',
+  templateUrl: './stacked-chart.component.html',
+  styleUrls: ['./stacked-chart.component.scss'],
 })
 export class StackedChartComponent implements OnInit, OnDestroy {
   podatki: OblikaPodatkov[] = [];

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 import { GraphsDisplayComponent } from './graphs-display/graphs-display.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { JsonTableComponent } from './jsonTable/jsonTable.component';
+import { JsonTableComponent } from './jsonTable/json-table.component';
 
 const routes: Routes = [
   {
